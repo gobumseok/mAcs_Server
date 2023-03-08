@@ -66,7 +66,7 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'ka8178',
+      password: 'ck123123',
       database:'postgres',
       autoLoadEntities: true,
       entities: [AmrEntity,
@@ -85,7 +85,7 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
     //subscribers: ["dist/subscriber/**/*.js"],
     //migrations: ["dist/migration/**/*.js"],
     
-      synchronize: true,
+      synchronize: false,
       logging:true,
       
     }),
