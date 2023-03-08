@@ -11,6 +11,7 @@ export class AmrService {
     private readonly acsAmrRepository: Repository<AmrEntity>,
   ) {}
 
+
   async findAll(): Promise<AmrEntity[]> {
     return await this.acsAmrRepository.find({
       /*relations:{

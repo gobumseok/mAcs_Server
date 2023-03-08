@@ -18,6 +18,8 @@ import { JobEntity } from './entity/Job.entity';
 import { OrderEntity } from './entity/Order.entity';
 import { TaskEntity } from './entity/Task.entity';
 
+import { AmrtypeModule } from './module/Amrtype.module';
+
 /*import { AcsAmrtypeEntity } from './entity/AcsAmrtype.entity';
 import { AcsCallorderEntity } from './entity/AcsCallorder.entity';
 import { AcsCrossroadEntity } from './entity/AcsCrossroad.entity';
@@ -91,6 +93,7 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
     }),
     WebsocketModule,
     AmrModule,
+    AmrtypeModule,
     /*AcsAmrTypeModule,
     AcsCallorderModule,
     AcsCrossroadModule,

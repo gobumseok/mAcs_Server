@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 
 import { AmrEntity } from '../entity/Amr.entity';
-import { AmrService } from '../service/AcsAmr.service';
-@Controller('AcsAmr')
+import { AmrService } from '../service/Amr.service';
+@Controller('Amr')
 export class AmrController {
   constructor(private acsAmrService: AmrService) {}
   //@Post()

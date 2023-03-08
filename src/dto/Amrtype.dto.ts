@@ -1,18 +1,37 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AmrDto } from './Amr.dto';
 import { CallorderDto } from './Callorder.dto';
+import { IsDate, IsIn, IsNumberString, IsOptional, IsString } from "class-validator";
+import { isDate } from 'util/types';
+import { Type } from 'class-transformer';
 
 
 export class AmrtypeDto {
   
+  @IsNumberString()
   id: string;
+  
+  @IsString()
   code: string;
+  
+  @IsString()
   type: string;
+
+  @IsString()
   description: string | null;
+  
+  
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
   createdAt: Date;
+  
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
   updatedAt: Date;
-  Amrs: AmrDto[];
+  
+  //Amrs: AmrDto[] | null;
 
   //@OneToMany(() => CallorderEntity, (acsCallorder) => acsCallorder.amrType)
-  Callorders: CallorderDto[];
+  //Callorders: CallorderDto[] | null ;
 }
