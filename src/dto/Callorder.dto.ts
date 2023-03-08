@@ -3,7 +3,7 @@ import { AmrtypeDto } from './Amrtype.dto';
 
 export class CallorderDto {
   
-  id12: string;
+  id: string;
   callOrderId: string;
   departure: string;
   destinations: string;
