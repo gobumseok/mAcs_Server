@@ -1,4 +1,5 @@
 
+import { IsIn, IsNumberString } from "class-validator";
 import { MapDto } from './Map.dto';
 import { AmrtypeDto } from './Amrtype.dto';
 //import { AcsEquipmentautodoorlogEntity  } from './AcsEquipmentautodoorlog.entity';
