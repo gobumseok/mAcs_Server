@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -8,6 +9,7 @@ async function bootstrap() {
   app.useWebSocketAdapter(new WsAdapter(app));
   app.enableCors();
   //api document
+  app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
     .setTitle('Acs document')
     .setDescription('ACS API description')
