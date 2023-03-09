@@ -15,9 +15,11 @@ export class AmrtypeService {
   ) {}
 
 
-  async createAmrType(amrtypeDto: AmrtypeDto) : Promise<void> {
+  async createAmrType(amrtypeDto: AmrtypeDto) : Promise<boolean> {
 
-    //테이블 내의 중복 테이터 조회  
+    
+    //테이블 내의 중복 테이터 조회 
+    var flag : boolean = false; 
     const getCode = amrtypeDto.code;
     const getType = amrtypeDto.type;
     this.logger.debug(getCode);
@@ -29,10 +31,14 @@ export class AmrtypeService {
     this.logger.debug(getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
     if(getAmrtypeCnt === 0){
-      await this.amrTypeRepository.save(amrtypeDto) 
+      await this.amrTypeRepository.save(amrtypeDto);
+      flag = true; 
     }else{
       this.logger.debug('check');
-    }                             
+      flag = false;
+    }
+    //중복 데이터가 없으면
+    return flag;                             
     
   }
 

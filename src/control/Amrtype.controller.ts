@@ -9,6 +9,7 @@ import {
     Response,
     Body,
     Logger,
+    HttpStatus,
   } from '@nestjs/common';
 
 
@@ -26,7 +27,7 @@ export class AmrtypeController {
   
   //amr type 등록
   @Post()
-  async Amrtype(@Body() bodyData) : Promise<void>{
+  async Amrtype(@Body() bodyData):Promise<any>{
     
     this.logger.debug(bodyData);
     //body 파싱(amrtype 생성)
@@ -40,7 +41,12 @@ export class AmrtypeController {
     
     
     this.logger.debug('body@@amr-type:description: ' + amrType.description);
-    await this.amrtypeService.createAmrType(amrType);
+    var flag = await this.amrtypeService.createAmrType(amrType);
+    const httpcheck : Number = HttpStatus.OK;
+    
+    return {
+      'state' : flag
+    };
     
   }
 
