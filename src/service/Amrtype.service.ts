@@ -1,17 +1,21 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { IsNull, Repository } from 'typeorm';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { Repository , DataSource  } from 'typeorm';
 import { AmrtypeEntity } from '../entity/Amrtype.entity';
 import { AmrtypeDto  } from '../dto/Amrtype.dto';
+
 
 @Injectable()
 export class AmrtypeService {
 
   private readonly logger = new Logger(AmrtypeService.name);
   constructor(
+    @InjectDataSource()
+    private dataSource: DataSource,
     @InjectRepository(AmrtypeEntity)
     private readonly amrTypeRepository: Repository<AmrtypeEntity>,
+    
   ) {}
 
 
@@ -20,19 +24,35 @@ export class AmrtypeService {
     
     //테이블 내의 중복 테이터 조회 
     var flag : boolean = false; 
+    const getid = amrtypeDto.id;
     const getCode = amrtypeDto.code;
     const getType = amrtypeDto.type;
     this.logger.debug(getCode);
     //테이블 내의 중복 쿼리 동작
     const getAmrtypeCnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-                                 .where('Amrtype.type = :type  and Amrtype.code = :code',{type:getType,code:getCode})
+                                 .where('Amrtype.id = :id and Amrtype.type = :type  and Amrtype.code = :code',{id:getid,type:getType,code:getCode})
                                  .getCount();
     
-    this.logger.debug(getAmrtypeCnt);  
+    
+    var count : Number = 0;
+    count = await this.dataSource.query(`select nextval('acs.amrtype_id_seq'::regclass)`);
+    this.logger.debug('newxtval(): ' + count);
+
+
+    //this.logger.debug(getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
     if(getAmrtypeCnt === 0){
-      await this.amrTypeRepository.save(amrtypeDto);
-      flag = true; 
+
+      //var cnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
+      //                            .select('nextval(\'acs.amrtype_id_seq\'::regclass)').execute();
+      //this.logger.debug('newxtval(): ' + cnt);
+      //await this.amrTypeRepository.save(amrtypeDto);
+      //await this.amrTypeRepository.createQueryBuilder('Amrtype')
+      //                            .insert()
+      //                            .into(AmrtypeEntity,['nextval(acs.amrtype_id_seq)','code','type','description','createdAt','updatedAt'])
+      //                            .values(,amrtypeDto.code);
+      //      .in
+      //flag = true; 
     }else{
       this.logger.debug('check');
       flag = false;
@@ -87,7 +107,7 @@ export class AmrtypeService {
 
   
   
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.amrTypeRepository.delete(id);
   }
 }

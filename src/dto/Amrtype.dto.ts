@@ -7,6 +7,10 @@ import { Type } from 'class-transformer';
 
 export class AmrtypeDto {
   
+
+  @IsString()
+  id: string;
+
   @IsString()
   code: string;
   

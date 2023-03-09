@@ -32,7 +32,7 @@ export class AmrtypeController {
     this.logger.debug(bodyData);
     //body 파싱(amrtype 생성)
     const amrType = new AmrtypeDto();
-    //amrType.id = bodyData['id'];
+    amrType.id = bodyData['id'];
     amrType.code = bodyData['code'];
     amrType.type = bodyData['type'];
     amrType.description = bodyData['description'];
@@ -50,12 +50,15 @@ export class AmrtypeController {
     
   }
 
-  //create(@Body() createPostDto: CreatePostDto, @Res() res: Response) {
-  //  res.status(HttpStatus.OK).json(createPostDto);
+  @Delete('/:id')
+  async AmrtypeDelete_One(@Param('id') id : string) : Promise<void> {
+    return await this.amrtypeService.remove(id);
+  }
+  
 
   //amrtype all 
   @Get()
-  async AmrtypeAllList(): Promise<AmrtypeEntity[]>{
+  async AmrtypeAllList() : Promise<AmrtypeEntity[]>{
     return this.amrtypeService.findAll();
   }
 }
