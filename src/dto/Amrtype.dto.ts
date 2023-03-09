@@ -17,7 +17,7 @@ export class AmrtypeDto {
   type: string;
 
   @IsString()
-  description: string | null;
+  description: string;
   
   
   @IsOptional()

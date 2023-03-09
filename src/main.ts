@@ -9,7 +9,14 @@ async function bootstrap() {
   app.useWebSocketAdapter(new WsAdapter(app));
   app.enableCors();
   //api document
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe(
+    {
+
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+  }
+                          ));
   const config = new DocumentBuilder()
     .setTitle('Acs document')
     .setDescription('ACS API description')

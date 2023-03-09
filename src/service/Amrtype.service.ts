@@ -13,7 +13,7 @@ export class AmrtypeService {
   ) {}
 
 
-  async Save(amrtypeDto: AmrtypeDto) : Promise<void> {
+  async createAmrType(amrtypeDto: AmrtypeDto) : Promise<void> {
      await this.amrTypeRepository.save(amrtypeDto)
   }
 
