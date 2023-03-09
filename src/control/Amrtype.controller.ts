@@ -8,9 +8,8 @@ import {
     Res,
     Response,
     Body,
-    Logger,
   } from '@nestjs/common';
-import { Console } from 'console';
+
 
 import { AmrtypeDto } from '../dto/Amrtype.dto';
 import { AmrtypeService } from '../service/Amrtype.service';
@@ -24,15 +23,14 @@ export class AmrtypeController {
   
   //amr type 등록
   @Post()
-  Amrtype(@Body() armType : AmrtypeDto){
-    this.logger.debug("asdasd",armType.id);
+  async Amrtype(@Body() armType : AmrtypeDto) : Promise<string>{
     
-    //await this.amrtypeService.Save(armType);
-    const result = {
-      cmd : 'die hard2',
-
-  };
-    return result;
+    await this.amrtypeService.Save(armType);
+    return Object.assign({
+      data: { ...armType },
+      statusCode: 201,
+      statusMsg: `saved successfully`,
+    });
   }
 
   //create(@Body() createPostDto: CreatePostDto, @Res() res: Response) {
