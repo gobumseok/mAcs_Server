@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { AmrtypeEntity } from '../entity/Amrtype.entity';
 import { AmrtypeDto  } from '../dto/Amrtype.dto';
 
 @Injectable()
 export class AmrtypeService {
+
+  private readonly logger = new Logger(AmrtypeService.name);
   constructor(
     @InjectRepository(AmrtypeEntity)
     private readonly amrTypeRepository: Repository<AmrtypeEntity>,
@@ -14,7 +16,24 @@ export class AmrtypeService {
 
 
   async createAmrType(amrtypeDto: AmrtypeDto) : Promise<void> {
-     await this.amrTypeRepository.save(amrtypeDto)
+
+    //테이블 내의 중복 테이터 조회  
+    const getCode = amrtypeDto.code;
+    const getType = amrtypeDto.type;
+    this.logger.debug(getCode);
+    //테이블 내의 중복 쿼리 동작
+    const getAmrtypeCnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
+                                 .where('Amrtype.type = :type  and Amrtype.code = :code',{type:getType,code:getCode})
+                                 .getCount();
+    
+    this.logger.debug(getAmrtypeCnt);  
+    //중복 데이터가 없으면 insert
+    if(getAmrtypeCnt === 0){
+      await this.amrTypeRepository.save(amrtypeDto) 
+    }else{
+      this.logger.debug('check');
+    }                             
+    
   }
 
   async findAll(): Promise<AmrtypeEntity[]> {
@@ -59,6 +78,8 @@ export class AmrtypeService {
     });
   }
 
+
+  
   
   async remove(id: number): Promise<void> {
     await this.amrTypeRepository.delete(id);

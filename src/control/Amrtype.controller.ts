@@ -8,11 +8,14 @@ import {
     Res,
     Response,
     Body,
+    Logger,
   } from '@nestjs/common';
 
 
 import { AmrtypeDto } from '../dto/Amrtype.dto';
+import { AmrtypeEntity } from '../entity/Amrtype.entity';
 import { AmrtypeService } from '../service/Amrtype.service';
+
 
 @Controller('Amrtype')
 export class AmrtypeController {
@@ -23,27 +26,30 @@ export class AmrtypeController {
   
   //amr type 등록
   @Post()
-  async Amrtype(@Body() armType : AmrtypeDto) : Promise<string>{
+  async Amrtype(@Body() bodyData) : Promise<void>{
     
-    await this.amrtypeService.Save(armType);
-    return Object.assign({
-      data: { ...armType },
-      statusCode: 201,
-      statusMsg: `saved successfully`,
-    });
+    this.logger.debug(bodyData);
+    //body 파싱(amrtype 생성)
+    const amrType = new AmrtypeDto();
+    //amrType.id = bodyData['id'];
+    amrType.code = bodyData['code'];
+    amrType.type = bodyData['type'];
+    amrType.description = bodyData['description'];
+    amrType.createdAt = new Date(bodyData['createdAt']);
+    amrType.updatedAt = new Date(bodyData['updatedAt']);
+    
+    
+    this.logger.debug('body@@amr-type:description: ' + amrType.description);
+    await this.amrtypeService.createAmrType(amrType);
+    
   }
 
   //create(@Body() createPostDto: CreatePostDto, @Res() res: Response) {
   //  res.status(HttpStatus.OK).json(createPostDto);
 
-
+  //amrtype all 
   @Get()
-  GOGOGO(): any{
-
-    const result = {
-        cmd : 'die hard',
-
-    };
-    return result;
+  async AmrtypeAllList(): Promise<AmrtypeEntity[]>{
+    return this.amrtypeService.findAll();
   }
 }
