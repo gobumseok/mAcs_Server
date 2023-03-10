@@ -34,28 +34,21 @@ export class AmrtypeService {
                                  .getManyAndCount();
     
     
-    var count : Number = 0;
-    count = await this.dataSource.query(`select nextval('acs.amrtype_id_seq'::regclass)`);
-    this.logger.debug('newxtval(): ' + count);
-
+    
+    var getAmrtypeCnt = getAmrtypeObejct[1];
 
     //this.logger.debug(getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
     if(getAmrtypeCnt === 0){
+      
+      await this.amrTypeRepository.save(amrtypeDto);
+      flag = true;
 
-      //var cnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .select('nextval(\'acs.amrtype_id_seq\'::regclass)').execute();
-      //this.logger.debug('newxtval(): ' + cnt);
-      //await this.amrTypeRepository.save(amrtypeDto);
-      //await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .insert()
-      //                            .into(AmrtypeEntity,['nextval(acs.amrtype_id_seq)','code','type','description','createdAt','updatedAt'])
-      //                            .values(,amrtypeDto.code);
-      //      .in
-      //flag = true; 
     }else{
+
       this.logger.debug('check');
       flag = false;
+
     }
     //중복 데이터가 없으면
     return flag;                             
@@ -92,6 +85,9 @@ export class AmrtypeService {
   
   
   async remove(id: string): Promise<void> {
-    await this.amrTypeRepository.delete(id);
+    this.logger.debug('amr delete test');
+    await this.amrTypeRepository.createQueryBuilder('amrtype')
+                          .where('type_id = :type_id',{type_id: id})
+                          .delete().execute();
   }
 }

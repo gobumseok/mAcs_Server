@@ -4,8 +4,10 @@ import { CallorderEntity } from './Callorder.entity';
 
 @Entity("amrtype",{schema:'acs'})
 export class AmrtypeEntity {
-  @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
-  id: string;
+
+  
+  @PrimaryColumn("varchar", { name: "type_id",unique:true,length: 30 })
+  type_id: string;
 
   @Column("varchar", { name: "code", length: 5 })
   code: string;

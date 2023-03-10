@@ -18,6 +18,7 @@ import { AmrtypeEntity } from './Amrtype.entity';
 
 @Entity('amr',{schema:'acs'})
 export class AmrEntity {
+  
   @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
   id: number;
 
