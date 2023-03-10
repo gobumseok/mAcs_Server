@@ -34,11 +34,7 @@ export class AmrtypeService {
                                  .getCount();
     
     
-    var count : Number = 0;
-    count = await this.dataSource.query(`select nextval('acs.amrtype_id_seq'::regclass)`);
-    this.logger.debug('newxtval(): ' + count);
-
-
+    
     //this.logger.debug(getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
     if(getAmrtypeCnt === 0){
@@ -46,7 +42,7 @@ export class AmrtypeService {
       //var cnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
       //                            .select('nextval(\'acs.amrtype_id_seq\'::regclass)').execute();
       //this.logger.debug('newxtval(): ' + cnt);
-      //await this.amrTypeRepository.save(amrtypeDto);
+      await this.amrTypeRepository.save(amrtypeDto);
       //await this.amrTypeRepository.createQueryBuilder('Amrtype')
       //                            .insert()
       //                            .into(AmrtypeEntity,['nextval(acs.amrtype_id_seq)','code','type','description','createdAt','updatedAt'])
@@ -107,7 +103,7 @@ export class AmrtypeService {
 
   
   
-  async remove(id: string): Promise<void> {
-    await this.amrTypeRepository.delete(id);
+  async remove(id: string): Promise<any> {
+    return await this.amrTypeRepository.delete({id : id});
   }
 }

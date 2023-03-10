@@ -24,7 +24,7 @@ export class AmrService {
     });
   }
 
-  async findOne(id: string): Promise<AmrEntity> {
+  async findOne(id: number): Promise<AmrEntity> {
     return await this.acsAmrRepository.findOne({ 
       where : {id : id},
       /*relations:{

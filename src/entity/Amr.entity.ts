@@ -19,7 +19,7 @@ import { PositiontagEntity } from './Positiontag.entity';
 @Entity('amr',{schema:'acs'})
 export class AmrEntity {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
-  id: string;
+  id: number;
 
   @Column("varchar", { name: "amr_id", unique: true, length: 30 })
   amrId: string;

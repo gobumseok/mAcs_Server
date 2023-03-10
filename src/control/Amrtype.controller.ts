@@ -32,7 +32,7 @@ export class AmrtypeController {
     this.logger.debug(bodyData);
     //body 파싱(amrtype 생성)
     const amrType = new AmrtypeDto();
-    amrType.id = bodyData['id'];
+    //amrType.id = bodyData['id'];
     amrType.code = bodyData['code'];
     amrType.type = bodyData['type'];
     amrType.description = bodyData['description'];

@@ -4,7 +4,7 @@ import { CallorderEntity } from './Callorder.entity';
 
 @Entity("amrtype",{schema:'acs'})
 export class AmrtypeEntity {
-  @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
+  @PrimaryGeneratedColumn('increment',{ type: "bigint", name: "id" })
   id: string;
 
   @Column("varchar", { name: "code", length: 5 })
