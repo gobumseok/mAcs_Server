@@ -74,14 +74,14 @@ export class PositiontagEntity {
   typeId: string;
 
   
-  @OneToMany(() => AmrEntity, (acsAmr) => acsAmr.chargingPositionTag)
-  Amrs: AmrEntity[];
+  //@OneToMany(() => AmrEntity, (acsAmr) => acsAmr.chargingPositionTag)
+  //Amrs: AmrEntity[];
 
-  @OneToMany(() => AmrEntity, (acsAmr) => acsAmr.currentPositionTag)
-  acsAmrs2: AmrEntity[];
+  //@OneToMany(() => AmrEntity, (acsAmr) => acsAmr.currentPositionTag)
+  //acsAmrs2: AmrEntity[];
 
-  @OneToMany(() => AmrEntity, (acsAmr) => acsAmr.prevPositionTag)
-  acsAmrs3: AmrEntity[];
+  //@OneToMany(() => AmrEntity, (acsAmr) => acsAmr.prevPositionTag)
+  //acsAmrs3: AmrEntity[];
   
 
   @ManyToOne(() => MapEntity, (Map) => Map.Positiontags, {

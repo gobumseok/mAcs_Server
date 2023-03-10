@@ -6,19 +6,21 @@ import { AppService } from './app.service';
 import { AmrEntity } from './entity/Amr.entity';
 import { AmrModule } from './module/Amr.module';
 import { AmrtypeEntity } from './entity/Amrtype.entity';
-import { PositiontagEntity } from './entity/Positiontag.entity';
-import { MapEntity } from './entity/Map.entity'
-import { WorkplaceEntity } from './entity/Workplace.entity';
-import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
-import { PathEntity } from './entity/Path.entity';
-import { CrossroadEntity } from './entity/Crossroad.entity';
-import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity'
-import { CallorderEntity } from './entity/Callorder.entity';
-import { JobEntity } from './entity/Job.entity';
-import { OrderEntity } from './entity/Order.entity';
-import { TaskEntity } from './entity/Task.entity';
-
 import { AmrtypeModule } from './module/Amrtype.module';
+import { CallorderEntity } from './entity/Callorder.entity';
+//import { PositiontagEntity } from './entity/Positiontag.entity';
+//import { MapEntity } from './entity/Map.entity'
+//import { WorkplaceEntity } from './entity/Workplace.entity';
+//import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
+//import { PathEntity } from './entity/Path.entity';
+//import { CrossroadEntity } from './entity/Crossroad.entity';
+//import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity'
+//import { CallorderEntity } from './entity/Callorder.entity';
+//import { JobEntity } from './entity/Job.entity';
+//import { OrderEntity } from './entity/Order.entity';
+//import { TaskEntity } from './entity/Task.entity';
+
+
 
 /*import { AcsAmrtypeEntity } from './entity/AcsAmrtype.entity';
 import { AcsCallorderEntity } from './entity/AcsCallorder.entity';
@@ -73,17 +75,18 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
       autoLoadEntities: true,
       entities: [AmrEntity,
         AmrtypeEntity,
-        PositiontagEntity,
-        MapEntity,
-        WorkplaceEntity,
-        PositiontagtypeEntity,
-        PathEntity,
-        CrossroadEntity,
-        CrossroadPositionTagEntity,
         CallorderEntity,
-        JobEntity,
-        TaskEntity,
-        OrderEntity],
+        //PositiontagEntity,
+        //MapEntity,
+        //WorkplaceEntity,
+        //PositiontagtypeEntity,
+        //PathEntity,
+        //CrossroadEntity,
+        //CrossroadPositionTagEntity,
+        //JobEntity,
+        //TaskEntity,
+        //OrderEntity
+      ],
     //subscribers: ["dist/subscriber/**/*.js"],
     //migrations: ["dist/migration/**/*.js"],
     

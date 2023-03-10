@@ -49,8 +49,8 @@ export class MapEntity {
   @Column("double precision", { name: "scale"})
   scale: number;
   
-  @OneToMany(() => AmrEntity, (Amr) => Amr.map)
-  Amrs: AmrEntity[];
+  //@OneToMany(() => AmrEntity, (Amr) => Amr.map)
+  //Amrs: AmrEntity[];
 
   @ManyToOne(() => WorkplaceEntity, (acsWorkplace) => acsWorkplace.Maps, {
     onDelete: "RESTRICT",

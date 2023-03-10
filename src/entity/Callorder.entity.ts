@@ -22,13 +22,13 @@ export class CallorderEntity {
   @Column("timestamp", { name: "created_at" })
   createdAt: Date;
 
-  @Column("bigint", { name: "amr_type_id" })
+  @Column("varchar", { name: "amr_type_id",length:30 })
   amrTypeId: string;
 
   @ManyToOne(() => AmrtypeEntity, (Amrtype) => Amrtype.Callorders, {
     onDelete: "RESTRICT",
     onUpdate: "RESTRICT",
   })
-  @JoinColumn([{ name: "amr_type_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: "amr_type_id", referencedColumnName: "type_id" }])
   amrType: AmrtypeEntity;
 }

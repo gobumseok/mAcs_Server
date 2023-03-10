@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
-import { Repository , DataSource  } from 'typeorm';
+import { Repository , DataSource, IsNull  } from 'typeorm';
 import { AmrtypeEntity } from '../entity/Amrtype.entity';
 import { AmrtypeDto  } from '../dto/Amrtype.dto';
 
@@ -24,37 +24,30 @@ export class AmrtypeService {
     
     //테이블 내의 중복 테이터 조회 
     var flag : boolean = false; 
-    const getid = amrtypeDto.id;
+    
     const getCode = amrtypeDto.code;
-    const getType = amrtypeDto.type;
-    this.logger.debug(getCode);
+    const getType_id = amrtypeDto.type_id;
+    this.logger.debug('amr type_id: ' + getType_id);
     //테이블 내의 중복 쿼리 동작
-    const getAmrtypeCnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-                                 .where('Amrtype.id = :id and Amrtype.type = :type  and Amrtype.code = :code',{id:getid,type:getType,code:getCode})
-                                 .getCount();
+    const getAmrtypeObject = await this.amrTypeRepository.createQueryBuilder('Amrtype')
+                                 .where('Amrtype.type_id = :type_id and Amrtype.code = :code',{type_id:getType_id,code:getCode})
+                                 .getManyAndCount();
     
     
-    var count : Number = 0;
-    count = await this.dataSource.query(`select nextval('acs.amrtype_id_seq'::regclass)`);
-    this.logger.debug('newxtval(): ' + count);
-
-
-    //this.logger.debug(getAmrtypeCnt);  
+    var amrTypeCount : Number = getAmrtypeObject[1];
+    
+    if(amrTypeCount > 0){
+      this.logger.debug("amr Type List : " + getAmrtypeObject[0]);
+      //getAmrType  : AmrtypeEntity = getAmrtypeObject[0];
+    }
+      
     //중복 데이터가 없으면 insert
-    if(getAmrtypeCnt === 0){
-
-      //var cnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .select('nextval(\'acs.amrtype_id_seq\'::regclass)').execute();
-      //this.logger.debug('newxtval(): ' + cnt);
-      //await this.amrTypeRepository.save(amrtypeDto);
-      //await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .insert()
-      //                            .into(AmrtypeEntity,['nextval(acs.amrtype_id_seq)','code','type','description','createdAt','updatedAt'])
-      //                            .values(,amrtypeDto.code);
-      //      .in
-      //flag = true; 
+    if(amrTypeCount === 0){
+      this.logger.debug('save');
+      this.amrTypeRepository.save(amrtypeDto);
+      flag = true; 
     }else{
-      this.logger.debug('check');
+      this.logger.debug('같은 타입: ' + amrTypeCount);
       flag = false;
     }
     //중복 데이터가 없으면

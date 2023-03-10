@@ -42,10 +42,10 @@ export class OrderEntity {
   @OneToMany(() => JobEntity, (Job) => Job.order)
   Jobs: JobEntity[];
 
-  @ManyToOne(() => AmrEntity, (Amr) => Amr.Orders, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
-  })
+  //@ManyToOne(() => AmrEntity, (Amr) => Amr.Orders, {
+  //  onDelete: "RESTRICT",
+  //  onUpdate: "RESTRICT",
+  //})
   @JoinColumn([{ name: "amr_id", referencedColumnName: "id" }])
   amr: AmrEntity;
 }

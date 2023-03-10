@@ -10,8 +10,8 @@ export class AmrtypeEntity {
   @Column("varchar", { name: "code", length: 5 })
   code: string;
 
-  @Column("varchar", { name: "type", length: 30 })
-  type: string;
+  @Column("varchar", { name: "type_id",unique: true,length: 30 })
+  type_id: string;
 
   @Column("varchar", { name: "description", nullable: true, length: 50 })
   description: string | null;
@@ -23,7 +23,7 @@ export class AmrtypeEntity {
   updatedAt: Date;
 
   @OneToMany(() => AmrEntity, (acsAmr) => acsAmr.type)
-  acsAmrs: AmrEntity[];
+  Amrs: AmrEntity[];
 
   @OneToMany(() => CallorderEntity, (acsCallorder) => acsCallorder.amrType)
   Callorders: CallorderEntity[];
