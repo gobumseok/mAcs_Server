@@ -11,8 +11,8 @@ import { MapEntity } from './Map.entity';
 import { AmrtypeEntity } from './Amrtype.entity';
 //import { AcsEquipmentautodoorlogEntity  } from './AcsEquipmentautodoorlog.entity';
 //import { AcsManualorderEntity } from './AcsManualorder.entity';
-import { OrderEntity } from './Order.entity';
-import { PositiontagEntity } from './Positiontag.entity';
+//import { OrderEntity } from './Order.entity';
+//import { PositiontagEntity } from './Positiontag.entity';
 
 
 
@@ -104,14 +104,15 @@ export class AmrEntity {
   evDestinationFloor: string | null;
 
   //amr type 
-  @ManyToOne(() => AmrtypeEntity, (acsAmrtype) => acsAmrtype.acsAmrs, {
+  @ManyToOne(() => AmrtypeEntity, (Amrtype) => Amrtype.Amrs, {
     onDelete: "RESTRICT",
     onUpdate: "RESTRICT",
   })
   
-  @JoinColumn([{ name: "type_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: "type_id", referencedColumnName: "type_id" }])
   type: AmrtypeEntity;
 
+  /*
   //충전 도킹 포인트
   @ManyToOne(() => PositiontagEntity, (Positiontag) => Positiontag.Amrs, {
     onDelete: "RESTRICT",
@@ -148,5 +149,5 @@ export class AmrEntity {
   
   @OneToMany(() => OrderEntity, (Order) => Order.amr)
   Orders: OrderEntity[];
-    
+  */
 }

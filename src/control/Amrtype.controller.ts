@@ -27,14 +27,14 @@ export class AmrtypeController {
   
   //amr type 등록
   @Post()
-  async Amrtype(@Body() bodyData):Promise<any>{
+  async CreateAmrtype(@Body() bodyData):Promise<any>{
     
     this.logger.debug(bodyData);
     //body 파싱(amrtype 생성)
     const amrType = new AmrtypeDto();
     //amrType.id = bodyData['id'];
     amrType.code = bodyData['code'];
-    amrType.type = bodyData['type'];
+    amrType.type_id = bodyData['type_id'];
     amrType.description = bodyData['description'];
     amrType.createdAt = new Date(bodyData['createdAt']);
     amrType.updatedAt = new Date(bodyData['updatedAt']);
@@ -42,7 +42,7 @@ export class AmrtypeController {
     
     this.logger.debug('body@@amr-type:description: ' + amrType.description);
     var flag = await this.amrtypeService.createAmrType(amrType);
-    const httpcheck : Number = HttpStatus.OK;
+    
     
     return {
       'state' : flag
@@ -50,9 +50,15 @@ export class AmrtypeController {
     
   }
 
-  @Delete('/:id')
-  async AmrtypeDelete_One(@Param('id') id : string) : Promise<void> {
-    return await this.amrtypeService.remove(id);
+//amrtype all 
+  @Get(':id')
+  async getAmrtype(@Param('id') type_id : string) : Promise<AmrtypeEntity>{
+    return this.amrtypeService.findOne(type_id);
+  }
+
+  @Delete(':id')
+  async AmrtypeDelete_One(@Param('id') type_id : string) : Promise<void> {
+    return await this.amrtypeService.remove(type_id);
   }
   
 
