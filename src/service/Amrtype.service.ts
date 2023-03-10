@@ -29,30 +29,16 @@ export class AmrtypeService {
     const getType_id = amrtypeDto.type_id;
     this.logger.debug('amr type_id: ' + getType_id);
     //테이블 내의 중복 쿼리 동작
-    const getAmrtypeCnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
+    const getAmrtypeObejct = await this.amrTypeRepository.createQueryBuilder('Amrtype')
                                  .where('Amrtype.type_id = :type_id and Amrtype.code = :code',{type_id:getType_id,code:getCode})
-                                 .getOne();
+                                 .getManyAndCount();
     
-    
-    //var count : Number = 0;
-    //count = await this.dataSource.query(`select nextval('acs.amrtype_id_seq'::regclass)`);
-    //this.logger.debug('newxtval(): ' + count.toString);
-
-
-    //this.logger.debug(getAmrtypeCnt);  
+    var getAmrtypeCnt = getAmrtypeObejct[1];
+    this.logger.debug("AmrtypeCnt: " +  getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
-    if(getAmrtypeCnt === null){
-
-      //var cnt = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .select('nextval(\'acs.amrtype_id_seq\'::regclass)').execute();
-      //this.logger.debug('newxtval(): ' + cnt);
-      //await this.amrTypeRepository.save(amrtypeDto);
-      //await this.amrTypeRepository.createQueryBuilder('Amrtype')
-      //                            .insert()
-      //                            .into(AmrtypeEntity,['nextval(acs.amrtype_id_seq)','code','type','description','createdAt','updatedAt'])
-      //                            .values(,amrtypeDto.code);
-      //      .in
-      //flag = true; 
+    if(getAmrtypeCnt == 0){
+      await this.amrTypeRepository.save(amrtypeDto);
+      flag = true; 
     }else{
       this.logger.debug('check');
       flag = false;
@@ -75,8 +61,9 @@ export class AmrtypeService {
   }
 
   async findOne(id: string): Promise<AmrtypeEntity> {
+    this.logger.debug('check:: ' + id);
     return await this.amrTypeRepository.findOne({ 
-      where : {id : id},
+      where : {type_id : id},
       /*relations:{
         currentPositionTag : true,
         chargingPositionTag : true, 
@@ -88,26 +75,13 @@ export class AmrtypeService {
     
     });
   }
-  
-  async findAMR(id: string): Promise<AmrtypeEntity> {
-    return await this.amrTypeRepository.findOne({ 
-      //where : {amrId : id},
-      /*relations:{
-        currentPositionTag : true,
-        chargingPositionTag : true, 
-        map : true,
-        prevPositionTag : true,
-        type : true
-      },*/
-    
-    
-    });
-  }
-
-
   
   
   async remove(id: string): Promise<void> {
-    await this.amrTypeRepository.delete(id);
+    this.logger.debug('amr delete test');
+    await this.amrTypeRepository.createQueryBuilder('amrtype')
+                          .where('type_id = :type_id',{type_id: id})
+                          .delete().execute();
+    
   }
 }
