@@ -4,6 +4,7 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { PositiontagEntity } from "./Positiontag.entity";
@@ -11,8 +12,8 @@ import { PositiontagEntity } from "./Positiontag.entity";
 
 @Entity('path',{schema:'acs'})
 export class PathEntity {
-  @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
-  id: string;
+  @PrimaryColumn('varchar',{name:'path_id',length:30})
+  path_id: string;
 
   @Column("smallint", { name: "is_bidirectional", width: 1 })
   isBidirectional: boolean;
@@ -23,10 +24,10 @@ export class PathEntity {
   @Column("timestamp", { name: "updated_at" })
   updatedAt: Date;
 
-  @Column("bigint", { name: "from_tag_id" })
+  @Column('varchar', { name: 'from_tag_id',length:30 })
   fromTagId: string;
 
-  @Column("bigint", { name: "to_tag_id" })
+  @Column('varchar', { name: 'to_tag_id',length:30 })
   toTagId: string;
   
   @ManyToOne(
@@ -34,7 +35,7 @@ export class PathEntity {
     (Positiontag) => Positiontag.fromPaths,
     { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
   )
-  @JoinColumn([{ name: "from_tag_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'from_tag_id', referencedColumnName: 'tag_id' }])
   fromTag: PositiontagEntity;
 
   @ManyToOne(
@@ -42,7 +43,7 @@ export class PathEntity {
     (Positiontag) => Positiontag.toPaths,
     { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
   )
-  @JoinColumn([{ name: "to_tag_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'to_tag_id', referencedColumnName: 'tag_id' }])
   toTag: PositiontagEntity;
   
 }

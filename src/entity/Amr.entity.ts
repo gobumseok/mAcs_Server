@@ -13,7 +13,7 @@ import { AmrtypeEntity } from './Amrtype.entity';
 //import { AcsEquipmentautodoorlogEntity  } from './AcsEquipmentautodoorlog.entity';
 //import { AcsManualorderEntity } from './AcsManualorder.entity';
 //import { OrderEntity } from './Order.entity';
-//import { PositiontagEntity } from './Positiontag.entity';
+import { PositiontagEntity } from './Positiontag.entity';
 
 
 
@@ -77,30 +77,30 @@ export class AmrEntity {
   @Column('timestamp', { name: 'updated_at' })
   updatedAt: Date;
 
-  @Column('bigint', { name: 'current_position_tag_id', nullable: true })
-  currentPositionTagId: number | null;
+  @Column('varchar', { name: 'current_position_tag_id',length:30,nullable: true })
+  currentPositionTagId: string | null;
 
-  @Column('bigint', { name: 'map_id' })
-  mapId: number;
+  @Column('varchar',{ name: 'map_id',length:30 })
+  mapId: string;
 
-  @Column('bigint', { name: 'type_id' })
+  @Column('varchar', { name: 'type_id',length:30 })
   typeId: number;
 
-  @Column('bigint', { name: 'prev_position_tag_id', nullable: true })
-  prevPositionTagId: number | null;
+  //@Column('bigint', { name: 'prev_position_tag_id', nullable: true })
+  //prevPositionTagId: number | null;
 
-  @Column('timestamp', { name: 'reading_prev_tag_at', nullable: true })
-  readingPrevTagAt: Date | null;
+  //@Column('timestamp', { name: 'reading_prev_tag_at', nullable: true })
+  //readingPrevTagAt: Date | null;
 
-  @Column('bigint', { name: 'charging_position_tag_id', nullable: true })
-  chargingPositionTagId: number | null;
+  @Column('varchar', { name: 'charging_position_tag_id',length:30, nullable: true })
+  chargingPositionTagId: string | null;
 
-  @Column('varchar', {
-    name: 'ev_destination_floor',
-    nullable: true,
-    length: 5,
-  })
-  evDestinationFloor: string | null;
+  //@Column('varchar', {
+  //  name: 'ev_destination_floor',
+  //  nullable: true,
+  //  length: 5,
+  //})
+  //evDestinationFloor: string | null;
 
   //amr type 
   @ManyToOne(() => AmrtypeEntity, (Amrtype) => Amrtype.Amrs, {
@@ -111,42 +111,43 @@ export class AmrEntity {
   @JoinColumn([{ name: 'type_id', referencedColumnName: 'type_id' }])
   type: AmrtypeEntity;
 
-  /*
+  
   //충전 도킹 포인트
-  @ManyToOne(() => PositiontagEntity, (Positiontag) => Positiontag.Amrs, {
+  @ManyToOne(() => PositiontagEntity, (Positiontag) => Positiontag.chargingAmrs, {
     onDelete: "RESTRICT",
     onUpdate: "RESTRICT",
   })
   @JoinColumn([
-    { name: "charging_position_tag_id", referencedColumnName: "id" },
+    { name: 'charging_position_tag_id', referencedColumnName: 'tag_id' },
   ])
   chargingPositionTag: PositiontagEntity;
 
   @ManyToOne(
     () => PositiontagEntity,
-    (Positiontag) => Positiontag.acsAmrs2,
-    { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
+    (Positiontag) => Positiontag.currentPositionAmrs,
+    { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }
   )
-  @JoinColumn([{ name: "current_position_tag_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'current_position_tag_id', referencedColumnName: 'tag_id' }])
   currentPositionTag: PositiontagEntity;
-
+  
+  
   @ManyToOne(
     () => PositiontagEntity,
-    (acsPositiontag) => acsPositiontag.acsAmrs3,
-    { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
+    (Positiontag) => Positiontag.prevPositionAmrs,
+    { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }
   )
-  @JoinColumn([{ name: "prev_position_tag_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'prev_position_tag_id', referencedColumnName: 'tag_id' }])
   prevPositionTag: PositiontagEntity;
-
+  
   //맵 
   @ManyToOne(() => MapEntity, (mainMap) => mainMap.Amrs, {
     onDelete: "RESTRICT",
     onUpdate: "RESTRICT",
   })
-  @JoinColumn([{ name: "map_id", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'map_id', referencedColumnName: 'map_id' }])
   map: MapEntity;
+    
+  //@OneToMany(() => OrderEntity, (Order) => Order.amr)
+  //Orders: OrderEntity[];
   
-  @OneToMany(() => OrderEntity, (Order) => Order.amr)
-  Orders: OrderEntity[];
-  */
 }

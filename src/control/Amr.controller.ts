@@ -37,7 +37,7 @@ export class AmrController {
   //}
 
   @Get(':id')
-  findOne(@Param('id',ParseIntPipe) id: number): Promise<AmrEntity> {
+  findOne(@Param('id') id: string): Promise<AmrEntity> {
     return this.acsAmrService.findOne(id);
   }
 

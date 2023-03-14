@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import {CrossroadPositionTagEntity} from './CrossroadPositionTag.entity';
@@ -12,8 +13,8 @@ import {CrossroadPositionTagEntity} from './CrossroadPositionTag.entity';
 
 @Entity('crossroad',{schema:'acs'})
 export class CrossroadEntity {
-  @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
-  id: string;
+  @PrimaryColumn( 'varchar' , {name: 'crossroad_id',length:30 })
+  crossroad_id: string;
 
   @Column("varchar", { name: "cross_id", length: 20 })
   crossId: string;
@@ -21,9 +22,9 @@ export class CrossroadEntity {
   @Column("timestamp", { name: "created_at" })
   createdAt: Date;
 
-  @OneToMany(
-    () => CrossroadPositionTagEntity,
-    (CrossroadPositionTag) => CrossroadPositionTag.crossroad
-  )
-  CrossroadPositionTags: CrossroadPositionTagEntity[];
+  //@OneToMany(
+  //  () => CrossroadPositionTagEntity,
+  //  (CrossroadPositionTag) => CrossroadPositionTag.crossroad
+  //)
+  //CrossroadPositionTags: CrossroadPositionTagEntity[];
 }

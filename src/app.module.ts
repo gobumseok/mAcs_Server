@@ -8,7 +8,15 @@ import { AmrModule } from './module/Amr.module';
 import { AmrtypeEntity } from './entity/Amrtype.entity';
 import { AmrtypeModule } from './module/Amrtype.module';
 import { CallorderEntity } from './entity/Callorder.entity';
-//import { PositiontagEntity } from './entity/Positiontag.entity';
+import { MapEntity } from './entity/Map.entity';
+import { WorkplaceEntity }  from './entity/Workplace.entity';
+import { PositiontagEntity } from './entity/Positiontag.entity';
+import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
+import { PathEntity } from './entity/Path.entity';
+import { CrossroadEntity } from './entity/Crossroad.entity';
+import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity';
+
+
 //import { MapEntity } from './entity/Map.entity'
 //import { WorkplaceEntity } from './entity/Workplace.entity';
 //import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
@@ -70,19 +78,20 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'ka8178',
+      password: 'ck123123',
       database:'postgres',
       autoLoadEntities: true,
       entities: [AmrEntity,
         AmrtypeEntity,
         CallorderEntity,
-        //PositiontagEntity,
-        //MapEntity,
-        //WorkplaceEntity,
-        //PositiontagtypeEntity,
-        //PathEntity,
+        MapEntity,
+        WorkplaceEntity,
+        PositiontagtypeEntity,
+        PositiontagEntity,
+        PathEntity,
         //CrossroadEntity,
-        //CrossroadPositionTagEntity,
+        //CrossroadPositionTagEntity,  
+        
         //JobEntity,
         //TaskEntity,
         //OrderEntity
