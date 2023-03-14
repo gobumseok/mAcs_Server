@@ -2,27 +2,27 @@ import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from
 import { AmrEntity } from './Amr.entity';
 import { CallorderEntity } from './Callorder.entity';
 
-@Entity("amrtype",{schema:'acs'})
+@Entity('amrtype',{schema:'acs'})
 export class AmrtypeEntity {
   
-  @PrimaryColumn("varchar", { name: "type_id",unique:true,length: 30 })
+  @PrimaryColumn('varchar', { name: 'type_id',unique:true,length: 30 })
   type_id: string;
 
-  @Column("varchar", { name: "code", length: 5 })
+  @Column('varchar', { name: 'code', length: 5 })
   code: string;
 
-  @Column("varchar", { name: "description", nullable: true, length: 50 })
+  @Column('varchar', { name: 'description', nullable: true, length: 50 })
   description: string | null;
 
-  @Column("timestamp", { name: "created_at" })
+  @Column('timestamp', { name: 'created_at' })
   createdAt: Date;
 
-  @Column("timestamp", { name: "updated_at" })
+  @Column('timestamp', { name: 'updated_at' })
   updatedAt: Date;
 
   @OneToMany(() => AmrEntity, (Amr) => Amr.type)
   Amrs: AmrEntity[];
 
-  @OneToMany(() => CallorderEntity, (acsCallorder) => acsCallorder.amrType)
+  @OneToMany(() => CallorderEntity, (Callorder) => Callorder.amrType)
   Callorders: CallorderEntity[];
 }

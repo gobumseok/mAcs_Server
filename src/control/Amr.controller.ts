@@ -31,10 +31,10 @@ export class AmrController {
   //  return respanse;
   //}
 
-  @Get('/amr_id/:amr_id')
-  findAGV(@Param('amr_id') amr_id: string): Promise<AmrEntity> {
-    return this.acsAmrService.findAMR(amr_id);
-  }
+  //@Get('/amr_id/:amr_id')
+  //findAGV(@Param('amr_id') amr_id: string): Promise<AmrEntity> {
+  //  return this.acsAmrService.findAMR(amr_id);
+  //}
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<AmrEntity> {
