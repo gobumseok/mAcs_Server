@@ -33,15 +33,22 @@ export class AmrtypeService {
                                  .where('Amrtype.type_id = :type_id and Amrtype.code = :code',{type_id:getType_id,code:getCode})
                                  .getManyAndCount();
     
+    
+    
     var getAmrtypeCnt = getAmrtypeObejct[1];
-    this.logger.debug("AmrtypeCnt: " +  getAmrtypeCnt);  
+
+    //this.logger.debug(getAmrtypeCnt);  
     //중복 데이터가 없으면 insert
-    if(getAmrtypeCnt == 0){
+    if(getAmrtypeCnt === 0){
+      
       await this.amrTypeRepository.save(amrtypeDto);
-      flag = true; 
+      flag = true;
+
     }else{
+
       this.logger.debug('check');
       flag = false;
+
     }
     //중복 데이터가 없으면
     return flag;                             
@@ -82,6 +89,5 @@ export class AmrtypeService {
     await this.amrTypeRepository.createQueryBuilder('amrtype')
                           .where('type_id = :type_id',{type_id: id})
                           .delete().execute();
-    
   }
 }

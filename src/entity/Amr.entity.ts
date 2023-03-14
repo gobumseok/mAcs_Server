@@ -19,8 +19,6 @@ import { AmrtypeEntity } from './Amrtype.entity';
 
 @Entity('amr',{schema:'acs'})
 export class AmrEntity {
-  //@PrimaryGeneratedColumn({ type: "bigint", name: "id" })
-  //id: string;
 
   @PrimaryColumn('varchar', { name: 'amr_id', unique: true, length: 30 })
   amrId: string;

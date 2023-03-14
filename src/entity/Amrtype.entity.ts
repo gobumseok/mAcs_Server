@@ -4,6 +4,7 @@ import { CallorderEntity } from './Callorder.entity';
 
 @Entity('amrtype',{schema:'acs'})
 export class AmrtypeEntity {
+
   
   @PrimaryColumn('varchar', { name: 'type_id',unique:true,length: 30 })
   type_id: string;

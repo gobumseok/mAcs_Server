@@ -70,7 +70,7 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'ck123123',
+      password: 'ka8178',
       database:'postgres',
       autoLoadEntities: true,
       entities: [AmrEntity,

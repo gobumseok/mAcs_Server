@@ -36,8 +36,8 @@ export class AmrtypeController {
     amrType.code = bodyData['code'];
     amrType.type_id = bodyData['type_id'];
     amrType.description = bodyData['description'];
-    amrType.createdAt = new Date(bodyData['createdAt']);
-    amrType.updatedAt = new Date(bodyData['updatedAt']);
+    amrType.createdAt = new Date();
+    amrType.updatedAt = new Date();
     
     
     this.logger.debug('body@@amr-type:description: ' + amrType.description);
