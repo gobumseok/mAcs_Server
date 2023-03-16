@@ -36,14 +36,12 @@ export class AmrtypeController {
     amrType.code = bodyData['code'];
     amrType.type_id = bodyData['type_id'];
     amrType.description = bodyData['description'];
-    amrType.createdAt = new Date();
-    amrType.updatedAt = new Date();
+    amrType.createdAt = bodyData['createdAt'];
+    amrType.updatedAt = bodyData['updatedAt'];
     
     
-    this.logger.debug('body@@amr-type:description: ' + amrType.description);
+    this.logger.debug('body@@amr-type:description: ' + bodyData);
     var flag = await this.amrtypeService.createAmrType(amrType);
-    
-    
     return {
       'state' : flag
     };

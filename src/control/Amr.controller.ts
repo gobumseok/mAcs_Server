@@ -14,7 +14,7 @@ import { AmrEntity } from '../entity/Amr.entity';
 import { AmrService } from '../service/Amr.service';
 @Controller('Amr')
 export class AmrController {
-  constructor(private acsAmrService: AmrService) {}
+  constructor(private amrService: AmrService) {}
   //@Post()
   //create(@Body() createUserDto: AcsAgvDto): Promise<AcsAgvEntity> {
   //  return this.acsAgvService.create(createUserDto);
@@ -22,7 +22,7 @@ export class AmrController {
 
   @Get()
   findAll(): Promise<AmrEntity[]> {
-    return this.acsAmrService.findAll();
+    return this.amrService.findAll();
   }
 
   //@Get()
@@ -38,7 +38,7 @@ export class AmrController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<AmrEntity> {
-    return this.acsAmrService.findOne(id);
+    return this.amrService.findOne(id);
   }
 
   //@Delete(':id')

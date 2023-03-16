@@ -8,12 +8,12 @@ import { AmrEntity } from '../entity/Amr.entity';
 export class AmrService {
   constructor(
     @InjectRepository(AmrEntity)
-    private readonly acsAmrRepository: Repository<AmrEntity>,
+    private readonly amrRepository: Repository<AmrEntity>,
   ) {}
 
 
   async findAll(): Promise<AmrEntity[]> {
-    return await this.acsAmrRepository.find({
+    return await this.amrRepository.find({
       /*relations:{
         currentPositionTag : true,
         chargingPositionTag : true, 
@@ -25,7 +25,7 @@ export class AmrService {
   }
 
   async findOne(id: string): Promise<AmrEntity> {
-    return await this.acsAmrRepository.findOne({ 
+    return await this.amrRepository.findOne({ 
       where : {amrId : id},
       /*relations:{
         currentPositionTag : true,
@@ -40,7 +40,7 @@ export class AmrService {
   }
   
   async findAMR(id: string): Promise<AmrEntity> {
-    return await this.acsAmrRepository.findOne({ 
+    return await this.amrRepository.findOne({ 
       //where : {amrId : id},
       /*relations:{
         currentPositionTag : true,
@@ -56,6 +56,6 @@ export class AmrService {
 
   
   async remove(id: number): Promise<void> {
-    await this.acsAmrRepository.delete(id);
+    await this.amrRepository.delete(id);
   }
 }
