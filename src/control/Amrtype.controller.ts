@@ -10,6 +10,7 @@ import {
     Body,
     Logger,
     HttpStatus,
+    Put,
   } from '@nestjs/common';
 
 
@@ -48,7 +49,11 @@ export class AmrtypeController {
     
   }
 
-//amrtype all 
+  @Put(':id')
+  update(@Param('id') id: string, @Body() amrType: AmrtypeDto) {
+    return this.amrtypeService.Update(id,amrType);
+  }
+
   @Get(':id')
   async getAmrtype(@Param('id') type_id : string) : Promise<AmrtypeEntity>{
     return this.amrtypeService.findOne(type_id);

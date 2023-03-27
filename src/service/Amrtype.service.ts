@@ -84,6 +84,15 @@ export class AmrtypeService {
   }
   
   
+  async Update(id : string,armType : AmrtypeDto) : Promise<void>{
+    this.amrTypeRepository.createQueryBuilder()
+                          .update(armType)
+                          .where('type_id = :type_id',{type_id: id})
+                          .execute();
+  }     
+
+
+
   async remove(id: string): Promise<void> {
     this.logger.debug('amr delete test');
     await this.amrTypeRepository.createQueryBuilder('amrtype')
