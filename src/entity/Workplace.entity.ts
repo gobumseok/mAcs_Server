@@ -4,7 +4,7 @@ import { MapEntity } from './Map.entity';
 @Entity('workplace' ,{schema:'acs'})
 export class WorkplaceEntity {
 
-  @PrimaryColumn('varchar',{name:'work_space_id',length:30} )
+  @PrimaryColumn('varchar',{name:'work_space_id',length:30,nullable:false} )
   work_space_id: string;
 
   @Column('varchar', { name: 'name', length: 50 })

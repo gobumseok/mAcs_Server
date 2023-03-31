@@ -19,6 +19,7 @@ export class AmrtypeService {
   ) {}
 
 
+  
   async createAmrType(amrtypeDto: AmrtypeDto) : Promise<boolean> {
 
     
@@ -41,7 +42,7 @@ export class AmrtypeService {
     //중복 데이터가 없으면 insert
     if(getAmrtypeCnt === 0){
       
-      await this.amrTypeRepository.save(amrtypeDto);
+      await this.amrTypeRepository.insert(amrtypeDto);
       flag = true;
 
     }else{

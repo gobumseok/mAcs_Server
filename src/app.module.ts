@@ -10,6 +10,8 @@ import { AmrtypeModule } from './module/Amrtype.module';
 import { CallorderEntity } from './entity/Callorder.entity';
 import { MapEntity } from './entity/Map.entity';
 import { WorkplaceEntity }  from './entity/Workplace.entity';
+import { WorkPlaceModule } from './module/WorkPlace.module';
+
 import { PositiontagEntity } from './entity/Positiontag.entity';
 import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
 import { PathEntity } from './entity/Path.entity';
@@ -99,13 +101,14 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
     //subscribers: ["dist/subscriber/**/*.js"],
     //migrations: ["dist/migration/**/*.js"],
     
-      synchronize: true,
+      synchronize: false,
       logging:true,
       
     }),
     WebsocketModule,
     AmrModule,
     AmrtypeModule,
+    WorkPlaceModule,
     /*AcsAmrTypeModule,
     AcsCallorderModule,
     AcsCrossroadModule,

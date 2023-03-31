@@ -31,18 +31,19 @@ export class AmrtypeController {
   async CreateAmrtype(@Body() bodyData):Promise<any>{
     
     this.logger.debug(bodyData);
-    //body 파싱(amrtype 생성)
+    
+
     const amrType = new AmrtypeDto();
-    //amrType.id = bodyData['id'];
     amrType.code = bodyData['code'];
     amrType.type_id = bodyData['type_id'];
     amrType.description = bodyData['description'];
     amrType.createdAt = bodyData['createdAt'];
     amrType.updatedAt = bodyData['updatedAt'];
     
-    
     this.logger.debug('body@@amr-type:description: ' + bodyData);
     var flag = await this.amrtypeService.createAmrType(amrType);
+    
+    
     return {
       'state' : flag
     };
