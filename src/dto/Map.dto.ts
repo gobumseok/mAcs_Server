@@ -7,7 +7,7 @@ import { WorkplaceDto } from './Workplace.dto';
 
 export class MapDto {
   
-  id: string;
+  map_id: string;
   name: string;
   floor: string;
   mapImg: string;
@@ -17,8 +17,8 @@ export class MapDto {
   originX: number;
   originY: number;
   scale: number;
-  Amrs: AmrDto;
-  workPlace: WorkplaceDto;
-  Positiontags: PositiontagDto[];
+  //Amrs: AmrDto;
+  //workPlace: WorkplaceDto;
+  //Positiontags: PositiontagDto[];
   
 }

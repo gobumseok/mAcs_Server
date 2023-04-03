@@ -11,9 +11,11 @@ import { CallorderEntity } from './entity/Callorder.entity';
 import { MapEntity } from './entity/Map.entity';
 import { WorkplaceEntity }  from './entity/Workplace.entity';
 import { WorkPlaceModule } from './module/WorkPlace.module';
-
 import { PositiontagEntity } from './entity/Positiontag.entity';
+
 import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
+import { PositionTagTypeModule } from './module/PositionTagType.module';
+
 import { PathEntity } from './entity/Path.entity';
 import { CrossroadEntity } from './entity/Crossroad.entity';
 import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity';
@@ -109,6 +111,7 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
     AmrModule,
     AmrtypeModule,
     WorkPlaceModule,
+    PositionTagTypeModule,
     /*AcsAmrTypeModule,
     AcsCallorderModule,
     AcsCrossroadModule,
