@@ -21,7 +21,7 @@ import { PositiontagtypeEntity } from "./Positiontagtype.entity";
 @Entity('positiontag',{schema:'acs'})
 export class PositiontagEntity {
   
-  @PrimaryColumn('varchar', { name: 'tag_id', unique: true, length: 30 })
+  @PrimaryColumn('varchar', { name: 'tag_id', length: 30 })
   tag_id: string;
 
   @Column('varchar', { name: 'name', nullable: true, length: 30 })

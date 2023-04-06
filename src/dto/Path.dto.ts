@@ -5,7 +5,7 @@ import { PositiontagDto } from "./Positiontag.dto";
 
 export class PathDto {
   
-  id: string;
+  path_id: string;
   isBidirectional: boolean;
   createdAt: Date;
   updatedAt: Date;

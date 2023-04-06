@@ -12,14 +12,16 @@ import { MapEntity } from './entity/Map.entity';
 import { WorkplaceEntity }  from './entity/Workplace.entity';
 import { WorkPlaceModule } from './module/WorkPlace.module';
 import { PositiontagEntity } from './entity/Positiontag.entity';
+import { PositionTagModule } from './module/PositionTag.module';
 
 import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
 import { PositionTagTypeModule } from './module/PositionTagType.module';
 
 import { PathEntity } from './entity/Path.entity';
+import { PathModule } from './module/Path.module';
 import { CrossroadEntity } from './entity/Crossroad.entity';
 import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity';
-
+import { FileModule } from './file/file.module';
 
 //import { MapEntity } from './entity/Map.entity'
 //import { WorkplaceEntity } from './entity/Workplace.entity';
@@ -74,6 +76,7 @@ import { AcsPositiontagModule } from './module/AcsPositiontag.module';
 import { AcsTaskEModule } from './module/AcsTask.module';
 import { AcsWorkplaceModule } from './module/AcsWorkplace.module';
 import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.module';
+import { FileModule } from './file/file.module';
 */
 @Module({
   imports: [
@@ -112,6 +115,9 @@ import { AcsEquipmentautodoorModule } from './service/AcsEquipmentautodoor.modul
     AmrtypeModule,
     WorkPlaceModule,
     PositionTagTypeModule,
+    FileModule,
+    PositionTagModule,
+    PathModule,
     /*AcsAmrTypeModule,
     AcsCallorderModule,
     AcsCrossroadModule,

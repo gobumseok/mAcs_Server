@@ -11,8 +11,7 @@ import { PositiontagtypeDto } from "./Positiontagtype.dto";
 
 export class PositiontagDto {
   
-  id: string;
-  tagId: string;
+  tag_id: string;
   name: string | null;
   x: number;
   y: number;
@@ -29,13 +28,13 @@ export class PositiontagDto {
   updatedAt: Date;
   mapId: string;
   typeId: string;
-  Amrs: AmrDto[];
+  //Amrs: AmrDto[];
 
   //acsAmr.currentPositionTag)
-  acsAmrs2: AmrDto[];
+  //acsAmrs2: AmrDto[];
 
   //@OneToMany(() => AmrEntity, (acsAmr) => acsAmr.prevPositionTag)
-  acsAmrs3: AmrDto[];
+  //acsAmrs3: AmrDto[];
   
 
   //@ManyToOne(() => MapEntity, (Map) => Map.Positiontags, {
@@ -43,14 +42,14 @@ export class PositiontagDto {
   //  onUpdate: "RESTRICT",
   //})
   //@JoinColumn([{ name: "map_id", referencedColumnName: "id" }])
-  map: MapDto;
+  //map: MapDto;
 
   
   //@OneToMany(
   //  () => CrossroadPositionTagEntity,
   //  (acsCrossroadPositionTag) => acsCrossroadPositionTag.positiontag
   //)
-  CrossroadPositionTags: CrossroadPositionTagDto[];
+  //CrossroadPositionTags: CrossroadPositionTagDto[];
   /*
   @OneToMany(
     () => AcsElevatorEvPositionTagEntity,
@@ -77,10 +76,10 @@ export class PositiontagDto {
   acsEquipmentdockings: AcsEquipmentdockingEntity[];
   */  
   //@OneToMany(() => PathEntity, (Path) => Path.fromTag)
-  fromPaths: PathDto[];
+  //fromPaths: PathDto[];
 
   //@OneToMany(() => PathEntity, (Path) => Path.toTag)
-  toPaths: PathDto[];
+  //toPaths: PathDto[];
 
   //@ManyToOne(
   //  () => PositiontagtypeEntity,
@@ -88,6 +87,6 @@ export class PositiontagDto {
   // { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
   //)
   //@JoinColumn([{ name: "type_id", referencedColumnName: "id" }])
-  type: PositiontagtypeDto;
+  //type: PositiontagtypeDto;
       
 }
