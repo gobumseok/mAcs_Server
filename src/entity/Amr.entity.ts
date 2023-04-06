@@ -30,13 +30,13 @@ export class AmrEntity {
   msgId: string;
 
   @Column('double precision', { name: 'x'})
-  x: string;
+  x: number;
 
   @Column('double precision', { name: 'y' })
-  y: string;
+  y: number;
 
   @Column('double precision', { name: 'angle'})
-  angle: string;
+  angle: number;
 
   @Column('double precision', { name: 'battery'})
   battery: number;
@@ -84,7 +84,7 @@ export class AmrEntity {
   mapId: string;
 
   @Column('varchar', { name: 'type_id',length:30 })
-  typeId: number;
+  typeId: string;
 
   //@Column('bigint', { name: 'prev_position_tag_id', nullable: true })
   //prevPositionTagId: number | null;

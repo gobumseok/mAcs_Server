@@ -9,13 +9,13 @@ import { PositiontagDto } from './Positiontag.dto';
 
 export class AmrDto {
   
-  id: string;
+  
   amrId: string;
   msgType: string;
   msgId: string;
-  x: string;
-  y: string;
-  angle: string;
+  x: number;
+  y: number;
+  angle: number;
   battery: number;
   mode: string;
   state: string;
@@ -29,12 +29,12 @@ export class AmrDto {
   readingTagAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
-  currentPositionTagId: number | null;
-  mapId: number;
-  typeId: number;
-  prevPositionTagId: number | null;
+  currentPositionTagId: string | null;
+  mapId: string;
+  typeId: string;
+  prevPositionTagId: string | null;
   readingPrevTagAt: Date | null;
-  chargingPositionTagId: number | null;
+  chargingPositionTagId: string | null;
   evDestinationFloor: string | null;
   type: AmrtypeDto;
 
@@ -43,7 +43,7 @@ export class AmrDto {
   currentPositionTag: PositiontagDto;
   prevPositionTag: PositiontagDto;
   //맵 
-  map: MapDto;
-  Orders: OrderDto[];
+  //map: MapDto;
+  //Orders: OrderDto[];
     
 }

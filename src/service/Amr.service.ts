@@ -3,6 +3,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AmrEntity } from '../entity/Amr.entity';
+import { AmrDto } from '../dto/Amr.dto';
+
+
 
 @Injectable()
 export class AmrService {
@@ -11,6 +14,10 @@ export class AmrService {
     private readonly amrRepository: Repository<AmrEntity>,
   ) {}
 
+
+  async createAmr( amrDto : AmrDto) : Promise<void>{
+    this.amrRepository.insert(amrDto);
+  } 
 
   async findAll(): Promise<AmrEntity[]> {
     return await this.amrRepository.find({
