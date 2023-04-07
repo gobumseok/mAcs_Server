@@ -37,6 +37,7 @@ export class PositionTagController {
       
       const positiontagDto = new PositiontagDto(); 
       positiontagDto.tag_id =  bodyData['tag_id'];
+      positiontagDto.name = bodyData['name'];
       positiontagDto.x = bodyData['x'];
       positiontagDto.y = bodyData['y'];
       positiontagDto.angle = bodyData['angle'];
@@ -77,6 +78,7 @@ export class PositionTagController {
       
       const positiontagDto = new PositiontagDto(); 
       positiontagDto.tag_id =  bodyData['tag_id'];
+      positiontagDto.name = bodyData['name'];
       positiontagDto.x = bodyData['x'];
       positiontagDto.y = bodyData['y'];
       positiontagDto.angle = bodyData['angle'];
