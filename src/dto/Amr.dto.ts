@@ -35,7 +35,8 @@ export class AmrDto {
   prevPositionTagId: string | null;
   readingPrevTagAt: Date | null;
   chargingPositionTagId: string | null;
-  evDestinationFloor: string | null;
+  
+  
   type: AmrtypeDto;
 
   //충전 도킹 포인트
@@ -43,7 +44,7 @@ export class AmrDto {
   currentPositionTag: PositiontagDto;
   prevPositionTag: PositiontagDto;
   //맵 
-  //map: MapDto;
+  map: MapDto;
   //Orders: OrderDto[];
     
 }

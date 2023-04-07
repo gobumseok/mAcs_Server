@@ -23,21 +23,20 @@ export class MapService {
       }
     
     async FindAll() : Promise<MapDto[]>{
-    return await this.mapEntityRepository.find();
+        return await this.mapEntityRepository.find();
     }
     
-    
     async Update(id : string, mapDto : MapDto) : Promise<void>{
-    await this.mapEntityRepository.createQueryBuilder()
-                            .update(mapDto)
-                            .where('map_id = :map_id',{map_id: id})
-                            .execute();
+        await this.mapEntityRepository.createQueryBuilder()
+                                .update(mapDto)
+                                .where('map_id = :map_id',{map_id: id})
+                                .execute();
     }
     
     async remove(id : string) : Promise<void>{
-    await this.mapEntityRepository.createQueryBuilder()
-        .where('map_id = :map_id',{map_id: id})
-        .delete().execute();
+        await this.mapEntityRepository.createQueryBuilder()
+            .where('map_id = :map_id',{map_id: id})
+            .delete().execute();
     }
 
 }

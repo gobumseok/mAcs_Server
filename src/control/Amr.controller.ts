@@ -9,20 +9,21 @@ import {
   Res,
   Response,
   Body,
+  Put,
 } from '@nestjs/common';
 
 import { AmrDto } from '../dto/Amr.dto';
 import { AmrService } from '../service/Amr.service';
 
 
-
+//amr state 관리
 @Controller('Amr')
 export class AmrController {
   constructor(private amrService: AmrService) {}
   
   
   @Post()
-  async create(@Body() bodyData): Promise<string> {
+  async createAmr(@Body() bodyData): Promise<string> {
     
 
     var return_Data :string;
@@ -31,15 +32,30 @@ export class AmrController {
           
         const amrDto = new AmrDto(); 
         amrDto.amrId =  bodyData['amrId'];
-        amrDto.angle = bodyData['angle'];
-        amrDto.createdAt = bodyData['createdAt'];
-        amrDto.updatedAt = bodyData['updatedAt'];
-        
+        amrDto.msgType =  bodyData['msgType'];
+        amrDto.x =  bodyData['x'];
+        amrDto.y =  bodyData['y'];
+        amrDto.angle =  bodyData['angle'];
+        amrDto.battery =  bodyData['battery'];
+        amrDto.mode =  bodyData['mode'];
+        amrDto.state =  bodyData['state'];
+        amrDto.status =  bodyData['status'];
+        amrDto.equipmentStatus =  bodyData['equipmentStatus'];
+        amrDto.errorCode =  bodyData['errorCode'];
+        amrDto.description =  bodyData['description'];
+        amrDto.isCrossroad =  bodyData['isCrossroad'];
+        amrDto.isStatisticsIncluded = bodyData['isStatisticsIncluded'];
+        amrDto.readingTagAt = new Date(bodyData['readingTagAt']);
         amrDto.createdAt = new Date(bodyData['createdAt']);
         amrDto.updatedAt = new Date(bodyData['updatedAt']);    
-        
+        amrDto.mapId = bodyData['mapId'];
+        amrDto.typeId = bodyData['typeId'];
+        amrDto.prevPositionTagId = bodyData['prevPositionTagId'];
+        amrDto.readingPrevTagAt = bodyData['readingPrevTagAt'];
+        amrDto.currentPositionTagId = bodyData['currentPositionTagId'];
         //DB insert
-        //await this.amrService.(pathDto);
+        //await this.amrService.(amrDto);
+        await this.amrService.createAmr(amrDto);
         return_Data = 'Create Data';
 
     }else{
@@ -53,30 +69,49 @@ export class AmrController {
 
   }
 
+  @Put(':id')
+  async updataAmr(@Param('id') id, @Body() bodyData){
 
-  //@Get()
-  //findAll(): Promise<AmrEntity[]> {
-  //  return this.amrService.findAll();
-  //}
+    const amrDto = new AmrDto(); 
+    amrDto.amrId =  bodyData['amrId'];
+    amrDto.msgType =  bodyData['msgType'];
+    amrDto.x =  bodyData['x'];
+    amrDto.y =  bodyData['y'];
+    amrDto.angle =  bodyData['angle'];
+    amrDto.battery =  bodyData['battery'];
+    amrDto.mode =  bodyData['mode'];
+    amrDto.state =  bodyData['state'];
+    amrDto.status =  bodyData['status'];
+    amrDto.equipmentStatus =  bodyData['equipmentStatus'];
+    amrDto.errorCode =  bodyData['errorCode'];
+    amrDto.description =  bodyData['description'];
+    amrDto.isCrossroad =  bodyData['isCrossroad'];
+    amrDto.isStatisticsIncluded = bodyData['isStatisticsIncluded'];
+    amrDto.readingTagAt = new Date(bodyData['readingTagAt']);
+    amrDto.createdAt = new Date(bodyData['createdAt']);
+    amrDto.updatedAt = new Date(bodyData['updatedAt']);    
+    amrDto.mapId = bodyData['mapId'];
+    amrDto.typeId = bodyData['typeId'];
+    amrDto.prevPositionTagId = bodyData['prevPositionTagId'];
+    amrDto.readingPrevTagAt = bodyData['readingPrevTagAt'];
+    amrDto.currentPositionTagId = bodyData['currentPositionTagId'];
 
-  //@Get()
-  //async findAll(@Res() res:Response) {
-  //  const respanse = await this.acsAgvService.findAll();
-  //  return respanse;
-  //}
+    await this.amrService.Update(id,amrDto);
+  }
 
-  //@Get('/amr_id/:amr_id')
-  //findAGV(@Param('amr_id') amr_id: string): Promise<AmrEntity> {
-  //  return this.acsAmrService.findAMR(amr_id);
-  //}
 
-  //@Get(':id')
-  //findOne(@Param('id') id: string): Promise<AmrEntity> {
-  //  return this.amrService.findOne(id);
-  //}
+  @Get()
+  async findAll(): Promise<AmrDto[]> {
+    return await this.amrService.findAll();
+  }
 
-  //@Delete(':id')
-  //remove(@Param('id') id: number): Promise<void> {
-  //  return this.acsAgvService.remove(id);
-  //}
+  @Get(':amr_id')
+  async findAGV(@Param('amr_id') amr_id: string): Promise<AmrDto> {
+    return await this.amrService.findOne(amr_id);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: number): Promise<void> {
+    await this.amrService.remove(id);
+  }
 }

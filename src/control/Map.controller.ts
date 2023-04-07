@@ -32,18 +32,21 @@ export class MapController {
         
         var return_Data :string;
            
-        if(bodyData['work_space_id'].length > 0 ){
-            /**
-            const workplaceDto = new WorkplaceDto(); 
-            workplaceDto.work_space_id =  bodyData['work_space_id'];
-            workplaceDto.name = bodyData['name'];
-            workplaceDto.version = bodyData['version'];
-            workplaceDto.createdAt = new Date(bodyData['createdAt']);
-            workplaceDto.updatedAt = new Date(bodyData['updatedAt']);    
-            
-            //DB insert
-            await this.workPlaceService.createWorkPlace(workplaceDto);
-             */
+        if(bodyData['map_id'].length > 0 ){
+            this.logger.debug('workPlaceId: ' + bodyData['workPlaceId']);
+
+            const mapDto = new MapDto();
+            mapDto.map_id = bodyData['map_id'];
+            mapDto.name = bodyData['name'];
+            mapDto.mapImg = bodyData['mapImg'];
+            mapDto.workPlaceId = bodyData['workPlaceId'];
+            mapDto.originX = bodyData['originX'];
+            mapDto.originY = bodyData['originY'];
+            mapDto.scale = bodyData['scale'];
+            mapDto.floor = bodyData['floor'];
+            mapDto.createdAt = new Date(bodyData['createdAt']);
+            mapDto.updatedAt = new Date(bodyData['updatedAt']);
+            await this.mapService.createMap(mapDto);
             return_Data = 'Create Data';
 
         }else{
@@ -61,21 +64,21 @@ export class MapController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: string, @Body() bodyData ) : Promise<string> {
+    async update(@Param('id') id: string, @Body() bodyData ) : Promise<void> {
         
-        /** 
-        const workplaceDto = new WorkplaceDto();
-        workplaceDto.work_space_id =  bodyData['work_space_id'];
-        workplaceDto.name = bodyData['name'];
-        workplaceDto.version = bodyData['version'];
-        workplaceDto.createdAt = new Date(bodyData['createdAt']);
-        workplaceDto.updatedAt = new Date(bodyData['updatedAt']);
-
-        this.logger.debug('body@@WorkPlace-type:description: ' + bodyData['updatedAt'] );
-        */
-
-        //return await this.mapService.Update(id,workplaceDto);
-        return 'test';
+        const mapDto = new MapDto();
+        mapDto.map_id = bodyData['map_id'];
+        mapDto.name = bodyData['name'];
+        mapDto.mapImg = bodyData['mapImg'];
+        mapDto.workPlaceId = bodyData['workPlaceId'];
+        mapDto.originX = bodyData['originX'];
+        mapDto.originY = bodyData['originY'];
+        mapDto.scale = bodyData['scale'];
+        mapDto.floor = bodyData['floor'];
+        mapDto.createdAt = new Date(bodyData['createdAt']);
+        mapDto.updatedAt = new Date(bodyData['updatedAt']);    
+        await this.mapService.Update(id,mapDto);
+     
     }
 
     @Delete(':id')

@@ -86,11 +86,11 @@ export class AmrEntity {
   @Column('varchar', { name: 'type_id',length:30 })
   typeId: string;
 
-  //@Column('bigint', { name: 'prev_position_tag_id', nullable: true })
-  //prevPositionTagId: number | null;
+  @Column('varchar', { name: 'prev_position_tag_id',length:30, nullable: true })
+  prevPositionTagId: string | null;
 
-  //@Column('timestamp', { name: 'reading_prev_tag_at', nullable: true })
-  //readingPrevTagAt: Date | null;
+  @Column('timestamp', { name: 'reading_prev_tag_at', nullable: true })
+  readingPrevTagAt: Date | null;
 
   @Column('varchar', { name: 'charging_position_tag_id',length:30, nullable: true })
   chargingPositionTagId: string | null;

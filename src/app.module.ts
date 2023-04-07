@@ -9,6 +9,8 @@ import { AmrtypeEntity } from './entity/Amrtype.entity';
 import { AmrtypeModule } from './module/Amrtype.module';
 import { CallorderEntity } from './entity/Callorder.entity';
 import { MapEntity } from './entity/Map.entity';
+import { MapModule } from './module/Map.module';
+
 import { WorkplaceEntity }  from './entity/Workplace.entity';
 import { WorkPlaceModule } from './module/WorkPlace.module';
 import { PositiontagEntity } from './entity/Positiontag.entity';
@@ -114,6 +116,7 @@ import { FileModule } from './file/file.module';
     AmrModule,
     AmrtypeModule,
     WorkPlaceModule,
+    MapModule,
     PositionTagTypeModule,
     FileModule,
     PositionTagModule,

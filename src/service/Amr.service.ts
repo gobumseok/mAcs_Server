@@ -19,50 +19,43 @@ export class AmrService {
     this.amrRepository.insert(amrDto);
   } 
 
-  async findAll(): Promise<AmrEntity[]> {
+  async Update(id : string, amrDto : AmrDto) : Promise<void>{
+    this.amrRepository.createQueryBuilder()
+                          .update(amrDto)
+                          .where('amrId = :amrId',{amrId: id})
+                          .execute();
+  }
+
+
+  async findAll(): Promise<AmrDto[]> {
     return await this.amrRepository.find({
-      /*relations:{
+      relations:{
         currentPositionTag : true,
         chargingPositionTag : true, 
         map : true,
         prevPositionTag : true,
         type : true
-      },*/
+      },
     });
   }
 
-  async findOne(id: string): Promise<AmrEntity> {
+  async findOne(id: string): Promise<AmrDto> {
     return await this.amrRepository.findOne({ 
       where : {amrId : id},
-      /*relations:{
+      relations:{
         currentPositionTag : true,
         chargingPositionTag : true, 
         map : true,
         prevPositionTag : true,
         type : true
-      },*/
+      },
     
     
     });
   }
   
-  async findAMR(id: string): Promise<AmrEntity> {
-    return await this.amrRepository.findOne({ 
-      //where : {amrId : id},
-      /*relations:{
-        currentPositionTag : true,
-        chargingPositionTag : true, 
-        map : true,
-        prevPositionTag : true,
-        type : true
-      },*/
-    
-    
-    });
-  }
-
   
-  async remove(id: number): Promise<void> {
-    await this.amrRepository.delete(id);
+  async remove(amr_Id: number): Promise<void> {
+    await this.amrRepository.delete(amr_Id);
   }
 }
