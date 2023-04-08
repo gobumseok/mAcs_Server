@@ -58,7 +58,7 @@ export class PositiontagEntity {
   extraParam: string | null;
 
   @Column('smallint', { name: 'is_virtual', width: 1 })
-  isVirtual: boolean;
+  isVirtual: number;
 
   @Column('timestamp', { name: 'created_at' })
   createdAt: Date;

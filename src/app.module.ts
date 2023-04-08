@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { WebsocketModule } from './websocketservice/websocket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -24,6 +24,7 @@ import { PathModule } from './module/Path.module';
 import { CrossroadEntity } from './entity/Crossroad.entity';
 import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity';
 import { FileModule } from './file/file.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 //import { MapEntity } from './entity/Map.entity'
 //import { WorkplaceEntity } from './entity/Workplace.entity';
@@ -142,6 +143,9 @@ import { FileModule } from './file/file.module';
     AcsWorkplaceModule,*/
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,{
+      provide: APP_INTERCEPTOR,
+      useClass: ClassSerializerInterceptor,
+  }],
 })
 export class AppModule {}

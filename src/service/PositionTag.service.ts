@@ -20,7 +20,7 @@ export class PositionTagService{
         await this.positionTagRepository.insert(positiontagDto);
     }
 
-    async FindAll() : Promise<PositiontagDto[]>{
+    async FindAll() : Promise<PositiontagDto[]> {
         return await this.positionTagRepository.find();
     }
 

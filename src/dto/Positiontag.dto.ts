@@ -6,87 +6,65 @@ import { CrossroadPositionTagDto } from './CrossroadPositionTag.dto';
 import { PathDto } from './Path.dto';
 import { MapDto } from './Map.dto';
 import { PositiontagtypeDto } from "./Positiontagtype.dto";
-
+import { IsString, IsNumber, IsBoolean, IsDate, IsOptional, IsEmpty } from 'class-validator';
 
 
 export class PositiontagDto {
-  
+ 
+  @IsString()
   tag_id: string;
+  
+  @IsOptional()
+  @IsString()
   name: string | null;
+  
+  @IsNumber()
   x: number;
+
+  @IsNumber()
   y: number;
+
+  @IsNumber()
   speed: number;
+
+  @IsNumber()
   angle: number;
+
+  @IsNumber()
   driveMode: number;
+
+  @IsNumber()
   precision: number;
+
+  @IsNumber()
   isSensor: number;
+
+  @IsNumber()
   isPause: number;
+
+  @IsNumber()
   parkedSide: number;
+
+  
+  @IsOptional()
+  @IsString()
+  @IsEmpty()
   extraParam: string | null;
-  isVirtual: boolean;
+
+  @IsNumber()
+  isVirtual: number;
+
+  @IsDate()
   createdAt: Date;
+  
+  @IsDate()
   updatedAt: Date;
+  
+  @IsString()
   mapId: string;
+
+  @IsString()
   typeId: string;
-  //Amrs: AmrDto[];
-
-  //acsAmr.currentPositionTag)
-  //acsAmrs2: AmrDto[];
-
-  //@OneToMany(() => AmrEntity, (acsAmr) => acsAmr.prevPositionTag)
-  //acsAmrs3: AmrDto[];
   
-
-  //@ManyToOne(() => MapEntity, (Map) => Map.Positiontags, {
-  //  onDelete: "RESTRICT",
-  //  onUpdate: "RESTRICT",
-  //})
-  //@JoinColumn([{ name: "map_id", referencedColumnName: "id" }])
-  //map: MapDto;
-
-  
-  //@OneToMany(
-  //  () => CrossroadPositionTagEntity,
-  //  (acsCrossroadPositionTag) => acsCrossroadPositionTag.positiontag
-  //)
-  //CrossroadPositionTags: CrossroadPositionTagDto[];
-  /*
-  @OneToMany(
-    () => AcsElevatorEvPositionTagEntity,
-    (acsElevatorEvPositionTag) => acsElevatorEvPositionTag.positiontag
-  )
-  acsElevatorEvPositionTags: AcsElevatorEvPositionTagEntity[];
-  
-  @OneToMany(
-    () => AcsEquipmentautodoorEntity,
-    (acsEquipmentautodoor) => acsEquipmentautodoor.inPositionTag
-  )
-  acsEquipmentautodoors: AcsEquipmentautodoorEntity[];
-
-  @OneToMany(
-    () => AcsEquipmentautodoorEntity,
-    (acsEquipmentautodoor) => acsEquipmentautodoor.outPositionTag
-  )
-  acsEquipmentautodoors2: AcsEquipmentautodoorEntity[];
-
-  @OneToMany(
-    () => AcsEquipmentdockingEntity,
-    (acsEquipmentdocking) => acsEquipmentdocking.positionTag
-  )
-  acsEquipmentdockings: AcsEquipmentdockingEntity[];
-  */  
-  //@OneToMany(() => PathEntity, (Path) => Path.fromTag)
-  //fromPaths: PathDto[];
-
-  //@OneToMany(() => PathEntity, (Path) => Path.toTag)
-  //toPaths: PathDto[];
-
-  //@ManyToOne(
-  //  () => PositiontagtypeEntity,
-  //  (Positiontagtype) => Positiontagtype.Positiontags,
-  // { onDelete: "RESTRICT", onUpdate: "RESTRICT" }
-  //)
-  //@JoinColumn([{ name: "type_id", referencedColumnName: "id" }])
-  //type: PositiontagtypeDto;
       
 }
