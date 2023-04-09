@@ -16,7 +16,7 @@ export class PathService{
     ) {}
 
 
-    async create_positionTagType(pathDto : PathDto) : Promise<void>{
+    async create_Path(pathDto : PathDto) : Promise<void>{
         await this.pathRepository.insert(pathDto);
     }
 

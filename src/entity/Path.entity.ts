@@ -16,7 +16,7 @@ export class PathEntity {
   path_id: string;
 
   @Column("smallint", { name: "is_bidirectional", width: 1 })
-  isBidirectional: boolean;
+  isBidirectional: number;
 
   @Column("timestamp", { name: "created_at" })
   createdAt: Date;

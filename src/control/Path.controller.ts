@@ -27,69 +27,16 @@ export class PathController {
 
 
   @Post()
-  async CreatePositionTag(@Body() bodyData) : Promise<string>{
-        
-    var return_Data :string;
-
-    if(bodyData['path_id'].length > 0 ){
-          
-        const pathDto = new PathDto(); 
-        pathDto.path_id =  bodyData['path_id'];
-        pathDto.isBidirectional = bodyData['isBidirectional'];
-        pathDto.createdAt = bodyData['createdAt'];
-        pathDto.updatedAt = bodyData['updatedAt'];
-        pathDto.fromTagId = bodyData['fromTagId'];
-        pathDto.toTagId = bodyData['toTagId'];
-        pathDto.createdAt = new Date(bodyData['createdAt']);
-        pathDto.updatedAt = new Date(bodyData['updatedAt']);    
-        
-        //DB insert
-        await this.pathService.create_positionTagType(pathDto);
-        return_Data = 'Create Data';
-
-    }else{
-
-      return_Data = 'Type error and check Post Data';
-
-    }
-
-    return return_Data;
-
+  async CreatePositionTag(@Body() pathDto : PathDto ) : Promise<void>{
+    await this.pathService.create_Path(pathDto);
   }
 
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() bodyData ) : Promise<string> {
+  async update(@Param('id') id: string, @Body() pathDto : PathDto ) : Promise<void> {
       
-      
-    var return_Data :string;
-
-    if(bodyData['tag_id'].length > 0 ){
-      
-        const pathDto = new PathDto(); 
-        pathDto.path_id =  bodyData['path_id'];
-        pathDto.isBidirectional = bodyData['isBidirectional'];
-        pathDto.createdAt = bodyData['createdAt'];
-        pathDto.updatedAt = bodyData['updatedAt'];
-        pathDto.fromTagId = bodyData['fromTagId'];
-        pathDto.toTagId = bodyData['toTagId'];
-        pathDto.createdAt = new Date(bodyData['createdAt']);
-        pathDto.updatedAt = new Date(bodyData['updatedAt']);    
-            
-        this.logger.debug('body@@WorkPlace-type:description: ' + bodyData['updatedAt'] );
-        await this.pathService.Update(id,pathDto);
+    await this.pathService.Update(id,pathDto);  
         
-        return_Data = 'Update Data';
-    
-    }
-    else{
-
-        return_Data = 'Type error and check Post Data';
-
-    }
-
-    return return_Data;
-      //return this.workPlaceService.Update(id,workplace);
   }
 
   @Delete(':id')
