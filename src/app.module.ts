@@ -109,7 +109,7 @@ import { FileModule } from './file/file.module';
     //subscribers: ["dist/subscriber/**/*.js"],
     //migrations: ["dist/migration/**/*.js"],
     
-      synchronize: false,
+      synchronize: true,
       logging:true,
       
     }),

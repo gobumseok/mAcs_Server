@@ -16,7 +16,7 @@ export class AmrService {
 
 
   async createAmr( amrDto : AmrDto) : Promise<void>{
-    this.amrRepository.insert(amrDto);
+    await this.amrRepository.insert(amrDto);
   } 
 
   async Update(id : string, amrDto : AmrDto) : Promise<void>{
@@ -55,7 +55,12 @@ export class AmrService {
   }
   
   
-  async remove(amr_Id: number): Promise<void> {
-    await this.amrRepository.delete(amr_Id);
+  async remove(amr_Id: string): Promise<void> {
+    
+    await this.amrRepository.createQueryBuilder('amr')
+    .where('amr_Id = :amr_Id',{amr_Id:amr_Id})
+    .delete().execute();
+
+
   }
 }

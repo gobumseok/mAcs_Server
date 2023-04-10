@@ -66,7 +66,7 @@ export class AmrEntity {
   isCrossroad: string | null;
 
   @Column('smallint', { name: 'is_statistics_included', width: 1 })
-  isStatisticsIncluded: boolean;
+  isStatisticsIncluded: number;
 
   @Column('timestamp', { name: 'reading_tag_at', nullable: true })
   readingTagAt: Date | null;
