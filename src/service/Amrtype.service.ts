@@ -20,43 +20,14 @@ export class AmrtypeService {
 
 
   
-  async createAmrType(amrtypeDto: AmrtypeDto) : Promise<boolean> {
+  async createAmrType(amrtypeDto: AmrtypeDto) : Promise<void> {
 
-    
-    //테이블 내의 중복 테이터 조회 
-    var flag : boolean = false; 
-    
-    const getCode = amrtypeDto.code;
-    const getType_id = amrtypeDto.type_id;
-    this.logger.debug('amr type_id: ' + getType_id);
-    //테이블 내의 중복 쿼리 동작
-    const getAmrtypeObejct = await this.amrTypeRepository.createQueryBuilder('Amrtype')
-                                 .where('Amrtype.type_id = :type_id and Amrtype.code = :code',{type_id:getType_id,code:getCode})
-                                 .getManyAndCount();
-    
-    
-    
-    var getAmrtypeCnt = getAmrtypeObejct[1];
-
-    //this.logger.debug(getAmrtypeCnt);  
-    //중복 데이터가 없으면 insert
-    if(getAmrtypeCnt === 0){
-      
-      await this.amrTypeRepository.insert(amrtypeDto);
-      flag = true;
-
-    }else{
-
-      this.logger.debug('check');
-      flag = false;
-
-    }
-    //중복 데이터가 없으면
-    return flag;                             
+    await this.amrTypeRepository.insert(amrtypeDto);
+                         
     
   }
 
-  async findAll(): Promise<AmrtypeEntity[]> {
+  async findAll(): Promise<AmrtypeDto[]> {
     return await this.amrTypeRepository.find({
       /*relations:{
         currentPositionTag : true,
@@ -68,7 +39,7 @@ export class AmrtypeService {
     });
   }
 
-  async findOne(id: string): Promise<AmrtypeEntity> {
+  async findOne(id: string): Promise<AmrtypeDto> {
     this.logger.debug('check:: ' + id);
     return await this.amrTypeRepository.findOne({ 
       where : {type_id : id},

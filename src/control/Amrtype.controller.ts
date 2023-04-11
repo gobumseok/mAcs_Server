@@ -28,26 +28,10 @@ export class AmrtypeController {
   
   //amr type 등록
   @Post()
-  async CreateAmrtype(@Body() bodyData):Promise<any>{
+  async CreateAmrtype(@Body() @Body() amrType: AmrtypeDto):Promise<void>{
     
-    this.logger.debug(bodyData);
-    
-
-    const amrType = new AmrtypeDto();
-    amrType.code = bodyData['code'];
-    amrType.type_id = bodyData['type_id'];
-    amrType.description = bodyData['description'];
-    amrType.createdAt = bodyData['createdAt'];
-    amrType.updatedAt = bodyData['updatedAt'];
-    
-    this.logger.debug('body@@amr-type:description: ' + bodyData);
-    var flag = await this.amrtypeService.createAmrType(amrType);
-    
-    
-    return {
-      'state' : flag
-    };
-    
+    await this.amrtypeService.createAmrType(amrType);
+     
   }
 
   @Put(':id')
@@ -56,7 +40,7 @@ export class AmrtypeController {
   }
 
   @Get(':id')
-  async getAmrtype(@Param('id') type_id : string) : Promise<AmrtypeEntity>{
+  async getAmrtype(@Param('id') type_id : string) : Promise<AmrtypeDto>{
     return this.amrtypeService.findOne(type_id);
   }
 
@@ -68,7 +52,7 @@ export class AmrtypeController {
 
   //amrtype all 
   @Get()
-  async AmrtypeAllList() : Promise<AmrtypeEntity[]>{
+  async AmrtypeAllList() : Promise<AmrtypeDto[]>{
     return this.amrtypeService.findAll();
   }
 }
