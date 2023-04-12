@@ -27,34 +27,8 @@ export class MapController {
 
 
     @Post()
-    async CreateMap(@Body() bodyData) : Promise<string>{
-        
-        
-        var return_Data :string;
-           
-        if(bodyData['map_id'].length > 0 ){
-            this.logger.debug('workPlaceId: ' + bodyData['workPlaceId']);
-
-            const mapDto = new MapDto();
-            mapDto.map_id = bodyData['map_id'];
-            mapDto.name = bodyData['name'];
-            mapDto.mapImg = bodyData['mapImg'];
-            mapDto.workPlaceId = bodyData['workPlaceId'];
-            mapDto.originX = bodyData['originX'];
-            mapDto.originY = bodyData['originY'];
-            mapDto.scale = bodyData['scale'];
-            mapDto.floor = bodyData['floor'];
-            mapDto.createdAt = new Date(bodyData['createdAt']);
-            mapDto.updatedAt = new Date(bodyData['updatedAt']);
-            await this.mapService.createMap(mapDto);
-            return_Data = 'Create Data';
-
-        }else{
-            return_Data = 'Type error and check Post Data';
-        }
-        
-        
-        return return_Data;
+    async CreateMap(@Body() mapDto : MapDto) : Promise<void>{
+        await this.mapService.createMap(mapDto);
     }
 
     
@@ -64,19 +38,8 @@ export class MapController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: string, @Body() bodyData ) : Promise<void> {
+    async update(@Param('id') id: string, @Body() mapDto : MapDto ) : Promise<void> {
         
-        const mapDto = new MapDto();
-        mapDto.map_id = bodyData['map_id'];
-        mapDto.name = bodyData['name'];
-        mapDto.mapImg = bodyData['mapImg'];
-        mapDto.workPlaceId = bodyData['workPlaceId'];
-        mapDto.originX = bodyData['originX'];
-        mapDto.originY = bodyData['originY'];
-        mapDto.scale = bodyData['scale'];
-        mapDto.floor = bodyData['floor'];
-        mapDto.createdAt = new Date(bodyData['createdAt']);
-        mapDto.updatedAt = new Date(bodyData['updatedAt']);    
         await this.mapService.Update(id,mapDto);
      
     }
