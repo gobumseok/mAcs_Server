@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { JobEntity } from './Job.entity';
-import { AmrEntity } from './Amr.entity';
+import { AmrEntity } from '../Amr/entity/Amr.entity';
 
 @Entity('order',{schema:'acs'})
 export class OrderEntity {

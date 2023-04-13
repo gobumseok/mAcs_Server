@@ -1,4 +1,4 @@
-import { AmrtypeDto } from './Amrtype.dto';
+import { AmrtypeDto } from '../Amrtype/dto/Amrtype.dto';
 
 
 export class CallorderDto {

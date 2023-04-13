@@ -1,6 +1,6 @@
 
 import { JobDto } from './Job.dto';
-import { AmrDto } from './Amr.dto';
+import { AmrDto } from '../Amr/Dto/Amr.dto';
 
 
 export class OrderDto {

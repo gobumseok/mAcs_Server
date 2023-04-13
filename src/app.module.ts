@@ -3,24 +3,24 @@ import { WebsocketModule } from './websocketservice/websocket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AmrEntity } from './entity/Amr.entity';
-import { AmrModule } from './module/Amr.module';
-import { AmrtypeEntity } from './entity/Amrtype.entity';
-import { AmrtypeModule } from './module/Amrtype.module';
+import { AmrEntity } from './Amr/entity/Amr.entity';
+import { AmrModule } from './Amr/module/Amr.module';
+import { AmrtypeEntity } from './Amrtype/entity/Amrtype.entity';
+import { AmrtypeModule } from './Amrtype/module/Amrtype.module';
 import { CallorderEntity } from './entity/Callorder.entity';
-import { MapEntity } from './entity/Map.entity';
-import { MapModule } from './module/Map.module';
+import { MapEntity } from './Map/entity/Map.entity';
+import { MapModule } from './Map/module/Map.module';
 
-import { WorkplaceEntity }  from './entity/Workplace.entity';
-import { WorkPlaceModule } from './module/WorkPlace.module';
-import { PositiontagEntity } from './entity/Positiontag.entity';
-import { PositionTagModule } from './module/PositionTag.module';
+import { WorkplaceEntity }  from './workPlace/entity/Workplace.entity';
+import { WorkPlaceModule } from './workPlace/module/WorkPlace.module';
+import { PositiontagEntity } from './PositionTag/entity/Positiontag.entity';
+import { PositionTagModule } from './PositionTag/module/PositionTag.module';
 
-import { PositiontagtypeEntity } from './entity/Positiontagtype.entity';
-import { PositionTagTypeModule } from './module/PositionTagType.module';
+import { PositiontagtypeEntity } from './PositionTagType/entity/Positiontagtype.entity';
+import { PositionTagTypeModule } from './PositionTagType/module/PositionTagType.module';
 
-import { PathEntity } from './entity/Path.entity';
-import { PathModule } from './module/Path.module';
+import { PathEntity } from './Path/entity/Path.entity';
+import { PathModule } from './Path/module/Path.module';
 import { CrossroadEntity } from './entity/Crossroad.entity';
 import { CrossroadPositionTagEntity } from './entity/CrossroadPositionTag.entity';
 import { FileModule } from './file/file.module';

@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CrossroadEntity } from './Crossroad.entity';
-import { PositiontagEntity } from './Positiontag.entity';
+import { PositiontagEntity } from '../PositionTag/entity/Positiontag.entity';
 
 
 @Entity('crossroad_position_tag',{schema:'acs'})

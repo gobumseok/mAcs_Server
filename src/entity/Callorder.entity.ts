@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn,Index,ManyToOne,JoinColumn, PrimaryColumn } from 'typeorm';
-import { AmrtypeEntity } from './Amrtype.entity';
+import { AmrtypeEntity } from '../Amrtype/entity/Amrtype.entity';
 
 
 @Entity('callorder',{schema:'acs'})

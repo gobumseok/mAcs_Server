@@ -1,5 +1,5 @@
 import { CrossroadDto } from './Crossroad.dto';
-import { PositiontagDto } from './Positiontag.dto';
+import { PositiontagDto } from '../PositionTag/dto/Positiontag.dto';
 
 
 
