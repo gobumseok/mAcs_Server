@@ -33,7 +33,6 @@ export class AmrController {
 
   @Put(':id')
   async updataAmr(@Param('id') id, @Body() amrDto : AmrDto){
-
     await this.amrService.Update(id,amrDto);
   }
 
