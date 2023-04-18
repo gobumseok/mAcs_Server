@@ -44,6 +44,11 @@ export class PathController {
       await this.pathService.remove(id);
     }
 
+  @Get('ALL')
+  async All_Path_List() : Promise<any>{
+    return this.pathService.Relation_FindAll();
+  }  
+
 
   @Get()
   async PositionTagTypeAllList() : Promise<any>{

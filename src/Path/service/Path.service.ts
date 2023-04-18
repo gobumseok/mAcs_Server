@@ -20,6 +20,16 @@ export class PathService{
         await this.pathRepository.insert(pathDto);
     }
 
+    async Relation_FindAll() : Promise<PathDto[]>{
+        return await this.pathRepository.find({
+            relations : {
+                fromTag : true,
+                toTag : true
+            }
+
+        });
+    }
+
     async FindAll() : Promise<PathDto[]>{
         return await this.pathRepository.find();
     }
