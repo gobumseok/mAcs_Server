@@ -13,6 +13,7 @@ import {
     Put,
   } from '@nestjs/common';
 import { PathDto } from '../dto/Path.dto';
+import { PositiontagDto} from '../../PositionTag/dto/Positiontag.dto';
 import { PathService } from '../service/Path.service';
 
 
@@ -27,8 +28,17 @@ export class PathController {
 
 
   @Post()
-  async CreatePositionTag(@Body() pathDto : PathDto ) : Promise<void>{
+  async CreatePath(@Body() pathDto : PathDto ) : Promise<void>{
     await this.pathService.create_Path(pathDto);
+  }
+
+  @Post(':FindPath')
+  async FullPath(@Body() info) : Promise<PositiontagDto[]>{
+
+    let start_tag_id : string = info['start'];
+    let end_tag_id : string = info['end'];
+    //await this.pathService.create_Path(pathDto);
+    return await this.pathService.Find_Path(start_tag_id,end_tag_id);
   }
 
 
