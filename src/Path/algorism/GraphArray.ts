@@ -54,12 +54,12 @@ export class GraphArray {
             {
                 //이미 방문했으면 스킵
                 if (visited[i]){
-                    console.log( i + '방문스');
+                    console.log( i + '이미방문');
                     continue;
                 }
                 //시작점으로 부터 발견된 적 없는 경우
                 if (distance[i] == Number.MAX_SAFE_INTEGER){
-                    console.log( i + 'distance 만땅스');
+                    console.log( i + '처음 방문');
                     continue;
                 }
                     
@@ -99,8 +99,8 @@ export class GraphArray {
             }
         }
 
-        console.log( parent + '부모스');
-        console.log( dest + '자식놈');
+        //console.log( parent + '부모스');
+        console.log( dest + '정리끝');
         this.CalcPathFromParent(parent, dest);
     }
 
