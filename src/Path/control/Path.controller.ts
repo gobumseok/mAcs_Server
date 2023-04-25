@@ -50,9 +50,9 @@ export class PathController {
   }
 
   @Delete(':id')
-    async Delete_One(@Param('id') id : string) : Promise<void> {
-      await this.pathService.remove(id);
-    }
+  async Delete_One(@Param('id') id : string) : Promise<void> {
+    await this.pathService.remove(id);
+  }
 
   @Get('ALL')
   async All_Path_List() : Promise<any>{
