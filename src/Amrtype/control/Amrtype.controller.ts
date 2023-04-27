@@ -15,7 +15,6 @@ import {
 
 
 import { AmrtypeDto } from '../dto/Amrtype.dto';
-import { AmrtypeEntity } from '../entity/Amrtype.entity';
 import { AmrtypeService } from '../service/Amrtype.service';
 
 
@@ -49,10 +48,11 @@ export class AmrtypeController {
     return await this.amrtypeService.remove(type_id);
   }
   
-
   //amrtype all 
   @Get()
   async AmrtypeAllList() : Promise<AmrtypeDto[]>{
     return this.amrtypeService.findAll();
   }
+
+  
 }
