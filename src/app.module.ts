@@ -108,7 +108,7 @@ import { FileModule } from './file/file.module';
       ],
     //subscribers: ["dist/subscriber/**/*.js"],
     //migrations: ["dist/migration/**/*.js"],
-    
+      //DB 테이블 갱신 시(개발용) 
       synchronize: false,
       logging:true,
       
